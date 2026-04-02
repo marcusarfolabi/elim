@@ -6,7 +6,7 @@ import { FOOTER_DATA } from "@/setting";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { IconType } from "react-icons";
-import { SalvationForm } from "./SalavationForm";
+import { SalvationForm } from "./SalvationForm";
 import {
     Dialog,
     DialogContent,
