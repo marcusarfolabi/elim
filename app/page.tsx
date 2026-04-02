@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion, Variants } from "motion/react";
-import { ResourcesGrid } from "@/components/Resources";
+import { ResourcesGrid } from "@/components/ResourcesGrid";
 import { AsymmetricGallery } from "@/components/Gallery";
 import { IdentitySection } from "@/components/IdentitySection";
 import { ModernFooter } from "@/components/Footer";
