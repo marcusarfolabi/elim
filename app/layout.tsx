@@ -61,8 +61,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="system"
+          enableSystem={true}
           disableTransitionOnChange
         >
           {children}
