@@ -161,3 +161,178 @@ export const RESOURCES: Resource[] = [
     ageGroup: "General",
   },
 ];
+export type GalleryImage = {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+export const GALLERY_IMAGES: GalleryImage[] = [
+  {
+    id: "annointing-1",
+    src: "/assets/gallery/annointing_service_1.jpg",
+    alt: "Annointing Service",
+    caption: "Moments of divine encounter and consecration.",
+  },
+  {
+    id: "annointing-2",
+    src: "/assets/gallery/annointing_service_2.jpg",
+    alt: "Annointing Service Highlights",
+    caption: "A special atmosphere of prayer and grace.",
+  },
+  {
+    id: "choir-main",
+    src: "/assets/gallery/choir.jpg",
+    alt: "The Elim Choir",
+    caption: "Leading the congregation into the presence of God.",
+  },
+  {
+    id: "levites-1",
+    src: "/assets/gallery/levites_1.jpg",
+    alt: "Levites in Ministry",
+    caption: "Dedicated service in the house of the Lord.",
+  },
+  {
+    id: "levites-2",
+    src: "/assets/gallery/levites_2.jpg",
+    alt: "Levites Service",
+    caption: "Heartfelt worship and ministry.",
+  },
+  {
+    id: "media-team",
+    src: "/assets/gallery/media.jpg",
+    alt: "Media Ministry",
+    caption: "Spreading the gospel through digital excellence.",
+  },
+  {
+    id: "reg-pastor-1",
+    src: "/assets/gallery/region_pastor_1.jpg",
+    alt: "Regional Pastor",
+    caption: "Spiritual leadership and guidance for the region.",
+  },
+  {
+    id: "reg-pastor-2",
+    src: "/assets/gallery/region_pastor_2.jpg",
+    alt: "Regional Pastor in Action",
+    caption: "Feeding the flock with the Word of Truth.",
+  },
+  {
+    id: "reg-pastor-main",
+    src: "/assets/gallery/region_pastor.jpg",
+    alt: "Regional Leadership",
+    caption: "A shepherd's heart for the people.",
+  },
+  {
+    id: "study-session",
+    src: "/assets/gallery/study.jpg",
+    alt: "Bible Study",
+    caption: "Deep dives into the scriptures for spiritual growth.",
+  },
+  {
+    id: "ushering-2",
+    src: "/assets/gallery/ushering_2.jpg",
+    alt: "Ushering Ministry",
+    caption: "Welcoming everyone with the love of Christ.",
+  },
+  {
+    id: "ushering-main",
+    src: "/assets/gallery/ushering.jpg",
+    alt: "Greeters and Ushers",
+    caption: "Serving with a smile in the sanctuary.",
+  },
+  {
+    id: "worship-1",
+    src: "/assets/gallery/worship_praise_1.jpg",
+    alt: "Worship and Praise",
+    caption: "Lifting holy hands in total surrender.",
+  },
+  {
+    id: "worship-2",
+    src: "/assets/gallery/worship_praise_2.jpg",
+    alt: "Intimate Worship",
+    caption: "An atmosphere of praise and thanksgiving.",
+  },
+  {
+    id: "worship-main",
+    src: "/assets/gallery/worship_praise.jpg",
+    alt: "Congregational Worship",
+    caption: "One voice, one heart, one God.",
+  },
+  {
+    id: "youth-min",
+    src: "/assets/gallery/youth_minister.jpg",
+    alt: "Youth Minister",
+    caption: "Empowering the next generation for Christ.",
+  },
+  {
+    id: "youth-pastor",
+    src: "/assets/gallery/youth_pastor.jpg",
+    alt: "Youth Leadership",
+    caption: "Visionary leadership for our young adults.",
+  },
+  {
+    id: "zonal-pastor",
+    src: "/assets/gallery/zonal_pastor.jpg",
+    alt: "Zonal Pastor",
+    caption: "Building strong foundations across our zones.",
+  },
+];
+
+export const IDENTITY_CARDS = [
+  {
+    title: "We are",
+    iconName: "Users",
+    description:
+      "Elim Sanctuary is a member of the Redeemed Christian Church of God (RCCG) and also the Provincial Headquarters for Lagos Province 37. We are a church that is open to all ages and social classes.",
+    image: "/assets/gallery/worship_praise_1.jpg",
+    color: "from-blue-500/20 to-transparent",
+  },
+  {
+    title: "We Aim",
+    iconName: "Target",
+    description:
+      "To develop a relentless prayer force. To identify and recruit prayer warriors within all the natural groups within the church. Quarterly Prayer retreats to maintain and generate fresh fire.",
+    image: "/assets/gallery/annointing_service_1.jpg",
+    color: "from-brand-blue/20 to-transparent",
+  },
+  {
+    title: "We Stand For",
+    iconName: "Shield",
+    description:
+      "Humility | Repentance | Soul winning | Confidentiality | Passion | Commitment | Persistence. We believe in spreading God's love, grace, and salvation to mankind.",
+    image: "/assets/gallery/study.jpg",
+    color: "from-purple-500/20 to-transparent",
+  },
+];
+
+export const FOOTER_DATA = {
+  address:
+    "2 Ogbomosho Avenue, Behind Jimmyco Filling Station. Iyana Dopemu, Akowonjo Lagos",
+  phone: "08033157281",
+  email: "info@rccg-elimsanctuary.org",
+  socials: [
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/rccgesl/video",
+      icon: "Facebook",
+    },
+    { name: "Twitter", href: "https://twitter.com/RccgESL", icon: "Twitter" },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/rccgelimsanctuary",
+      icon: "Instagram",
+    },
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/channel/UCs7I0BXvWu79rrH8jJZza0Q",
+      icon: "Youtube",
+    },
+  ],
+  forms: [
+    { name: "SALVATION FORM", href: "#" },
+    { name: "MEN'S FELLOWSHIP FORM", href: "#" },
+    { name: "TESTIMONY FORM", href: "#" },
+    { name: "CHOIR MEMBERSHIP FORM", href: "#" },
+  ],
+};

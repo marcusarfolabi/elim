@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, Variants } from "motion/react";
-import Image from "next/image";
-import { CheckCircle2, Download, FileText, Loader2, X } from "lucide-react";
+import { CheckCircle2, Download, FileText, Loader2 } from "lucide-react";
 import {
     Dialog,
     DialogContent,

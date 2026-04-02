@@ -1,11 +1,14 @@
 "use client";
 
-import { Navbar } from "@/components/navbar";
-import { Hero } from "@/components/hero";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion, Variants } from "motion/react";
-import { ResourcesGrid } from "@/components/resources";
+import { ResourcesGrid } from "@/components/Resources";
+import { AsymmetricGallery } from "@/components/Gallery";
+import { IdentitySection } from "@/components/IdentitySection";
+import { ModernFooter } from "@/components/Footer";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -83,6 +86,9 @@ export default function Home() {
       </section>
 
       <ResourcesGrid />
+      <AsymmetricGallery />
+      <IdentitySection />
+      <ModernFooter />
     </main>
   );
 }

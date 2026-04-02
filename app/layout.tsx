@@ -3,6 +3,7 @@ import { Instrument_Sans, JetBrains_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { Toaster } from 'react-hot-toast';
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -66,7 +67,19 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+
         </ThemeProvider>
+        <Toaster 
+          position="top-center" 
+          reverseOrder={false}
+          toastOptions={{
+            style: {
+              borderRadius: '12px',
+              background: '#333',
+              color: '#fff',
+            },
+          }}
+        />
       </body>
     </html>
   );
