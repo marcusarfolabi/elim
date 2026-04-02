@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion, Variants } from "motion/react";
+import { ResourcesGrid } from "@/components/resources";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -80,6 +81,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <ResourcesGrid />
     </main>
   );
 }
