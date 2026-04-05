@@ -104,7 +104,7 @@ export function SalvationForm() {
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest"
+                className="w-full bg-brand-blue cursor-pointer hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest"
             >
                 {isSubmitting ? "Sending..." : "Submit Request"}
             </Button>

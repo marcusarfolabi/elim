@@ -15,7 +15,7 @@ export async function sendSalvationEmail(data: {
   try {
     const { error } = await resend.emails.send({
       from: "RCCG - Elim Sanctuary <elim-sanctuary@vaspayment.us>",
-      to: [process.env.SYSTEM_EMAIL || "edgevarsity0605@gmail.com"],
+      to: [process.env.PASTOR_EMAIL || process.env.SYSTEM_EMAIL || "edgevarsity0605@gmail.com"],
       subject: `New Salvation From ${data.name}`,
       react: (
         <EmailTemplate

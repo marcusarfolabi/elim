@@ -14,6 +14,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { AppointmentForm } from "./AppointmentForm";
 
 export function ModernFooter() {
     return (
@@ -108,8 +109,9 @@ export function ModernFooter() {
                                         </DialogHeader>
 
                                         {form.name === "SALVATION FORM" && <SalvationForm />}
+                                        {form.name === "APPOINTMENT FORM" && <AppointmentForm />}
 
-                                        {form.name !== "SALVATION FORM" && (
+                                        {form.name !== "SALVATION FORM" && form.name !== "APPOINTMENT FORM" && (
                                             <div className="py-10 text-center text-muted-foreground">
                                                 The {form.name} is coming soon.
                                             </div>
@@ -126,7 +128,6 @@ export function ModernFooter() {
                             </span>
                             <div className="flex gap-4">
                                 {FOOTER_DATA.socials.map((social, i) => {
-                                    // Map the string name to the actual imported Component
                                     const BrandIcons: Record<string, IconType> = {
                                         Facebook: FaFacebookF,
                                         Twitter: FaTwitter,
