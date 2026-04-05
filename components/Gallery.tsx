@@ -147,7 +147,7 @@ export function AsymmetricGallery() {
                                                     src={activeImage.src}
                                                     alt={activeImage.alt}
                                                     fill
-                                                    priority
+                                                    unoptimized
                                                     className="object-contain select-none p-4"
                                                 />
                                             </motion.div>

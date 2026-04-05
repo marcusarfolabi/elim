@@ -4,14 +4,13 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import * as LucideIcons from "lucide-react";
 import { IDENTITY_CARDS } from "@/setting";
-import { Icon } from "lucide-react";
+
 type LucideIconName = keyof typeof LucideIcons;
+
 export function IdentitySection() {
     return (
-        // Changed bg-black to bg-background and added transition for smooth theme switching
         <section className="py-24 bg-background overflow-hidden transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-4">
-                {/* Header */}
                 <div className="mb-16">
                     <motion.span
                         initial={{ opacity: 0, x: -20 }}
@@ -23,14 +22,12 @@ export function IdentitySection() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        // Changed text-white to text-foreground
                         className="text-foreground text-5xl md:text-7xl font-black uppercase tracking-tighter"
                     >
                         See who <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-blue to-green-400">we are</span>
                     </motion.h2>
                 </div>
 
-                {/* Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {IDENTITY_CARDS.map((card, index) => {
                         const IconName = card.iconName as LucideIconName;
@@ -44,10 +41,8 @@ export function IdentitySection() {
                                 viewport={{ once: true }}
                                 className="group relative"
                             >
-                                {/* The Glow effect - reduced opacity for light mode */}
                                 <div className={`absolute -inset-0.5 bg-linear-to-b ${card.color} rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500`} />
 
-                                {/* Card Body: Changed bg-[#0A0A0A] to bg-card and border to border-border */}
                                 <div className="relative h-full bg-card border border-border rounded-3xl overflow-hidden flex flex-col shadow-sm dark:shadow-none">
                                     <div className="relative h-48 w-full">
                                         <Image
@@ -56,7 +51,6 @@ export function IdentitySection() {
                                             fill
                                             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                                         />
-                                        {/* linear overlay adapts to card background */}
                                         <div className="absolute inset-0 bg-linear-to-t from-card to-transparent" />
 
                                         <div className="absolute bottom-4 left-6 bg-brand-blue p-3 rounded-2xl text-white shadow-xl shadow-brand-blue/20">
@@ -65,15 +59,14 @@ export function IdentitySection() {
                                     </div>
 
                                     <div className="p-8 pt-4 grow">
-                                        {/* Changed text-white to text-card-foreground */}
                                         <h3 className="text-card-foreground text-2xl font-bold uppercase tracking-tight mb-4 group-hover:text-brand-blue transition-colors">
                                             {card.title}
                                         </h3>
-                                        {/* Changed text-gray-400 to text-muted-foreground */}
                                         <p className="text-muted-foreground leading-relaxed text-sm">
                                             {card.description}
                                         </p>
                                     </div>
+                                    
                                     <div className="h-1 w-0 group-hover:w-full bg-brand-blue transition-all duration-500" />
                                 </div>
                             </motion.div>

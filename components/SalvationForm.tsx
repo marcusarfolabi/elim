@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import * as z from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,12 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroupTextarea } from "@/components/ui/input-group";
+import { useState } from "react";
+import { sendSalvationEmail } from "@/app/actions/send-email";
+import toast from "react-hot-toast";
 
 const salvationSchema = z.object({
     name: z.string().min(2, "Name is required"),
-    address: z.string().min(5, "Address is required"),
+    email: z.string().email("Valid email is required"),
     phone: z.string().min(10, "Valid phone number required"),
-    request: z.string().min(1, "Please enter your request"),
+    request: z.string().min(1, "Please enter your prayer request"),
 });
 
 type SalvationValues = z.infer<typeof salvationSchema>;
@@ -21,17 +23,31 @@ type SalvationValues = z.infer<typeof salvationSchema>;
 export function SalvationForm() {
     const form = useForm<SalvationValues>({
         resolver: zodResolver(salvationSchema),
-        defaultValues: { name: "", address: "", phone: "", request: "" },
+        defaultValues: { name: "", email: "",  phone: "", request: "" },
     });
 
-    const onSubmit = (data: SalvationValues) => {
-        console.log("Salvation Form Data:", data);
+    
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    
+    const onSubmit = async (data: SalvationValues) => {
+        setIsSubmitting(true);
+
+        const result = await sendSalvationEmail(data);
+
+        setIsSubmitting(false);
+
+        if (result.success) {
+            toast.success("Email sent!");
+            form.reset();
+        } else {
+            toast.error(`Error: ${result.error}`);
+        }
     };
 
     return (
         <form id="salvation-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-4">
             <FieldGroup>
-                {/* Name Field */}
                 <Controller
                     name="name"
                     control={form.control}
@@ -44,20 +60,29 @@ export function SalvationForm() {
                     )}
                 />
 
-                {/* Phone Field */}
                 <Controller
                     name="phone"
                     control={form.control}
                     render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Phone Number</FieldLabel>
-                            <Input {...field} placeholder="080..." className="bg-muted/50" />
+                            <Input {...field} maxLength={11} placeholder="080..." className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                        </Field>
+                    )}
+                />
+                <Controller
+                    name="email"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                            <FieldLabel>Email</FieldLabel>
+                            <Input {...field} type="email" placeholder="your.email@example.com" className="bg-muted/50" />
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
 
-                {/* Prayer Request Field */}
                 <Controller
                     name="request"
                     control={form.control}
@@ -76,8 +101,12 @@ export function SalvationForm() {
                 />
             </FieldGroup>
 
-            <Button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest">
-                Submit Request
+            <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest"
+            >
+                {isSubmitting ? "Sending..." : "Submit Request"}
             </Button>
         </form>
     );

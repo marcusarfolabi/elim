@@ -39,6 +39,7 @@ export function Navbar() {
                 src="/favicon-96x96.png"
                 alt="RCCG Logo"                
                 fill
+                sizes="w-96 h-96"
                 className="object-contain"
               />
             </div>

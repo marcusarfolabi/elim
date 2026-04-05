@@ -16,6 +16,7 @@ const Field = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEleme
     <div ref={ref} className={cn("space-y-2", className)} {...props} />
   )
 );
+
 Field.displayName = "Field";
 
 const FieldLabel = React.forwardRef<
@@ -46,7 +47,7 @@ const FieldError = React.forwardRef<HTMLParagraphElement, FieldErrorProps>(
     return (
       <p
         ref={ref}
-        className={cn("text-xs font-medium text-destructive mt-1", className)}
+        className={cn("text-xs font-medium text-destructive mt-2", className)}
         {...props}
       >
         {children || errorMessages?.[0]?.message || errorMessages?.[0]}
@@ -54,6 +55,7 @@ const FieldError = React.forwardRef<HTMLParagraphElement, FieldErrorProps>(
     );
   }
 );
+
 FieldError.displayName = "FieldError";
 
 export { Field, FieldGroup, FieldLabel, FieldError };

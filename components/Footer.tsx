@@ -18,13 +18,11 @@ import {
 export function ModernFooter() {
     return (
         <footer className="relative bg-background pt-24 pb-12 overflow-hidden border-t border-border transition-colors duration-500">
-            {/* Background Motion Decorative Elements */}
             <div className="absolute top-0 right-0 w-125 h-125 bg-brand-blue/5 rounded-full blur-[120px] -z-10" />
 
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-                    {/* LEFT: LOCATION & CONTACT */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -109,10 +107,8 @@ export function ModernFooter() {
                                             </DialogTitle>
                                         </DialogHeader>
 
-                                        {/* Conditional Rendering for different forms */}
                                         {form.name === "SALVATION FORM" && <SalvationForm />}
 
-                                        {/* Fallback for forms you haven't built yet */}
                                         {form.name !== "SALVATION FORM" && (
                                             <div className="py-10 text-center text-muted-foreground">
                                                 The {form.name} is coming soon.
