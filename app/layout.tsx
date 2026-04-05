@@ -4,8 +4,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { Toaster } from 'react-hot-toast';
+import { ModernFooter } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Elim Sanctuary - Your Place of Comfort",
     description: "Spreading God's love, grace, and salvation to mankind through our Lord Jesus Christ.",
-    url: "https://rccg-elimsanctuary.org",  
+    url: "https://rccg-elimsanctuary.org",
     siteName: "Elim Sanctuary",
     locale: "en_NG",
     type: "website",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest", 
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -66,11 +68,13 @@ export default function RootLayout({
           enableSystem={true}
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
+          <ModernFooter />
 
         </ThemeProvider>
-        <Toaster 
-          position="top-center" 
+        <Toaster
+          position="top-center"
           reverseOrder={false}
           toastOptions={{
             style: {

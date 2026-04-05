@@ -35,7 +35,6 @@ const itemVariants: Variants = {
 export default function Home() {
   return (
     <main className="relative min-h-screen">
-      <Navbar />
       <Hero />
 
       {/* Welcome Section */}
@@ -88,7 +87,6 @@ export default function Home() {
       <ResourcesGrid />
       <AsymmetricGallery />
       <IdentitySection />
-      <ModernFooter />
     </main>
   );
 }
