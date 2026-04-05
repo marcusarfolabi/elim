@@ -332,7 +332,7 @@ export const FOOTER_DATA = {
   forms: [
     { name: "SALVATION FORM", href: "#" },
     { name: "APPOINTMENT FORM", href: "#" },
-    { name: "MEN'S FELLOWSHIP FORM", href: "#" },
+    { name: "MENS FELLOWSHIP FORM", href: "#" },
     { name: "TESTIMONY FORM", href: "#" },
     { name: "CHOIR MEMBERSHIP FORM", href: "#" },
   ],

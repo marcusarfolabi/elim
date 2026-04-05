@@ -15,6 +15,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { AppointmentForm } from "./AppointmentForm";
+import { MensFellowshipForm } from "./MensFellowshipForm";
 
 export function ModernFooter() {
     return (
@@ -110,8 +111,9 @@ export function ModernFooter() {
 
                                         {form.name === "SALVATION FORM" && <SalvationForm />}
                                         {form.name === "APPOINTMENT FORM" && <AppointmentForm />}
+                                        {form.name === "MENS FELLOWSHIP FORM" && <MensFellowshipForm />}
 
-                                        {form.name !== "SALVATION FORM" && form.name !== "APPOINTMENT FORM" && (
+                                        {form.name !== "SALVATION FORM" && form.name !== "APPOINTMENT FORM" && form.name !== "MENS FELLOWSHIP FORM" && (
                                             <div className="py-10 text-center text-muted-foreground">
                                                 The {form.name} is coming soon.
                                             </div>
