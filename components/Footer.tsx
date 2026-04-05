@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { AppointmentForm } from "./AppointmentForm";
 import { MensFellowshipForm } from "./MensFellowshipForm";
+import { TestimonyForm } from "./TestimonyForm";
 
 export function ModernFooter() {
     return (
@@ -112,8 +113,9 @@ export function ModernFooter() {
                                         {form.name === "SALVATION FORM" && <SalvationForm />}
                                         {form.name === "APPOINTMENT FORM" && <AppointmentForm />}
                                         {form.name === "MENS FELLOWSHIP FORM" && <MensFellowshipForm />}
+                                        {form.name === "TESTIMONY FORM" && <TestimonyForm />}
 
-                                        {form.name !== "SALVATION FORM" && form.name !== "APPOINTMENT FORM" && form.name !== "MENS FELLOWSHIP FORM" && (
+                                        {form.name !== "SALVATION FORM" && form.name !== "APPOINTMENT FORM" && form.name !== "MENS FELLOWSHIP FORM" && form.name !== "TESTIMONY FORM" && (
                                             <div className="py-10 text-center text-muted-foreground">
                                                 The {form.name} is coming soon.
                                             </div>
