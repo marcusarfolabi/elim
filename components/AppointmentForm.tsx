@@ -66,6 +66,7 @@ export function AppointmentForm() {
                             <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Email</FieldLabel>
                                 <Input {...field} type="email" placeholder="email@example.com" className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
@@ -76,7 +77,7 @@ export function AppointmentForm() {
                             <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Phone/WhatsApp</FieldLabel>
                                 <Input {...field} placeholder="080..." className="bg-muted/50" />
-                            </Field>
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}         </Field>
                         )}
                     />
                 </div>
@@ -89,6 +90,7 @@ export function AppointmentForm() {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Purpose of Meeting (e.g., Counseling, Prayer)</FieldLabel>
                             <Input {...field} placeholder="Counseling, Prayer, etc." className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
@@ -100,7 +102,7 @@ export function AppointmentForm() {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Preferred Date & Time</FieldLabel>
                             <Input {...field} type="text" placeholder="e.g. Next Monday at 10am" className="bg-muted/50" />
-                        </Field>
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />} </Field>
                     )}
                 />
 
@@ -111,12 +113,13 @@ export function AppointmentForm() {
                         <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>How did you hear about Pastor Debo?</FieldLabel>
                             <Input {...field} placeholder="Social media, friend, church..." className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
             </FieldGroup>
 
-            <Button type="submit" disabled={isSubmitting} 
+            <Button type="submit" disabled={isSubmitting}
                 className="w-full bg-brand-blue cursor-pointer hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest"
             >
                 {isSubmitting ? "Sending..." : "Book Appointment"}

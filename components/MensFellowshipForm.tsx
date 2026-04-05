@@ -61,20 +61,21 @@ export function MensFellowshipForm() {
                     <Controller
                         name="email"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Email</FieldLabel>
                                 <Input {...field} type="email" placeholder="email@example.com" className="bg-muted/50" />
-                            </Field>
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}   </Field>
                         )}
                     />
                     <Controller
                         name="phone"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Phone/WhatsApp</FieldLabel>
                                 <Input {...field} placeholder="080..." className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
@@ -84,20 +85,22 @@ export function MensFellowshipForm() {
                     <Controller
                         name="maritalStatus"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Marital Status</FieldLabel>
                                 <Input {...field} placeholder="Single, Married, etc." className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
                     <Controller
                         name="anniversary"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Wedding Ann. (Optional)</FieldLabel>
                                 <Input {...field} placeholder="DD/MM/YYYY" className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
@@ -106,10 +109,11 @@ export function MensFellowshipForm() {
                 <Controller
                     name="occupation"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Occupation / Professional Skills</FieldLabel>
                             <Input {...field} placeholder="e.g. Engineer, Accountant, Carpenter" className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />
@@ -117,10 +121,11 @@ export function MensFellowshipForm() {
                 <Controller
                     name="serviceArea"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Preferred Area of Service</FieldLabel>
                             <Input {...field} placeholder="Ushering, Music, Welfare, etc." className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

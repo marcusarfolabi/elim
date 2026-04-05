@@ -50,20 +50,22 @@ export function TestimonyForm() {
                     <Controller
                         name="name"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Full Name</FieldLabel>
                                 <Input {...field} placeholder="John Doe" className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
                     <Controller
                         name="phone"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Phone Number</FieldLabel>
                                 <Input {...field} placeholder="080..." className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
@@ -73,20 +75,22 @@ export function TestimonyForm() {
                     <Controller
                         name="category"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Category (Healing, Finance, etc.)</FieldLabel>
                                 <Input {...field} placeholder="e.g. Divine Provision" className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
                     <Controller
                         name="canShare"
                         control={form.control}
-                        render={({ field }) => (
-                            <Field>
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Can we share this with the church?</FieldLabel>
                                 <Input {...field} placeholder="Public / Private" className="bg-muted/50" />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
                     />
@@ -95,10 +99,11 @@ export function TestimonyForm() {
                 <Controller
                     name="title"
                     control={form.control}
-                    render={({ field }) => (
-                        <Field>
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
                             <FieldLabel>Testimony Title (Optional)</FieldLabel>
                             <Input {...field} placeholder="Marriage restoration after 10 years divorce" className="bg-muted/50" />
+                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
                 />

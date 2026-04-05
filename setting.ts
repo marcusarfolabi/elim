@@ -334,6 +334,6 @@ export const FOOTER_DATA = {
     { name: "APPOINTMENT FORM", href: "#" },
     { name: "MENS FELLOWSHIP FORM", href: "#" },
     { name: "TESTIMONY FORM", href: "#" },
-    { name: "CHOIR MEMBERSHIP FORM", href: "#" },
+    { name: "CHOIR APPLICATION", href: "#" },
   ],
 };
