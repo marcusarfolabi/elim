@@ -1,6 +1,5 @@
 "use client";
 
-import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -8,7 +7,7 @@ import { motion, Variants } from "motion/react";
 import { ResourcesGrid } from "@/components/ResourcesGrid";
 import { AsymmetricGallery } from "@/components/Gallery";
 import { IdentitySection } from "@/components/IdentitySection";
-import { ModernFooter } from "@/components/Footer";
+import Link from "next/link";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -72,13 +71,15 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={itemVariants}>
-              <Button
-                variant="outline"
-                className="cursor-pointer border-brand-blue text-brand-blue dark:border-brand-gold dark:text-brand-gold hover:bg-brand-blue hover:text-white rounded-full px-10 h-14 font-bold group transition-all"
-              >
-                READ FULL MESSAGE
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link href="/our-pillar">
+                <Button
+                  variant="outline"
+                  className="cursor-pointer border-brand-blue text-brand-blue dark:border-brand-gold dark:text-brand-gold hover:bg-brand-blue hover:text-white rounded-full px-10 h-14 font-bold group transition-all"
+                >
+                  READ FULL MESSAGE
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
