@@ -26,9 +26,10 @@ export default function OurPillarPage() {
           <div className="w-full lg:w-5/12 lg:sticky lg:top-24">
             <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/assets/pastors/pastor-debo.jpg"
+                src="/assets/pastors/pastor_debo_akande.jpg"
                 alt="Pastor Debo Akande"
                 fill
+                sizes="w-41 h-41"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority
               />

@@ -49,6 +49,7 @@ export function IdentitySection() {
                                             src={card.image}
                                             alt={card.title}
                                             fill
+                                            sizes="h-48 w-48"
                                             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                                         />
                                         <div className="absolute inset-0 bg-linear-to-t from-card to-transparent" />

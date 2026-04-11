@@ -108,7 +108,7 @@ export default function OurPastorsPage() {
           {mainPastors.map((pastor, index) => (
             <div key={index} className={`flex flex-col lg:flex-row bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 ${pastor.accent}`}>
               <div className="lg:w-1/3 relative h-100 lg:h-auto overflow-hidden">
-                <Image src={pastor.image} alt={pastor.name} fill className="object-cover" priority={index === 0} />
+                <Image src={pastor.image} sizes="h-33 w-33" alt={pastor.name} fill className="object-cover" priority={index === 0} />
               </div>
               <div className="lg:w-2/3 p-8 md:p-12 flex flex-col justify-center">
                 <h2 className="text-3xl font-bold text-slate-900">{pastor.name}</h2>

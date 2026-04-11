@@ -84,6 +84,8 @@ export function AsymmetricGallery() {
                                             src={image.src}
                                             alt={image.alt}
                                             fill
+                                            sizes="w-12 h-12"
+                                            loading="eager"
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center backdrop-blur-sm">
@@ -147,6 +149,7 @@ export function AsymmetricGallery() {
                                                     src={activeImage.src}
                                                     alt={activeImage.alt}
                                                     fill
+                                                    sizes="h-12 w-12"
                                                     unoptimized
                                                     className="object-contain select-none p-4"
                                                 />
