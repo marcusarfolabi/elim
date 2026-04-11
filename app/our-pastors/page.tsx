@@ -7,18 +7,16 @@ export const metadata: Metadata = {
   description: "Meet the leadership of RCCG Prevailers Region 61.",
 };
 
-const pastors = [
+const mainPastors = [
   {
     name: "Pastor Debo Akande",
     role: "Regional Pastor, Prevailers Region 61",
     credentials: "Lawyer by Profession",
-    image: "/assets/pastors/pastor-debo.jpg",  
+    image: "/assets/pastors/pastor_debo_akande.jpg",
     message: [
       "Greetings, beloved! I'm Pastor Debo Akande, your Regional Pastor, Prevailers Region 61.",
-      "As a lawyer by profession, I'd chase justice... but Jesus called me to preach GRACE. I'm a counselor, guiding hearts and a teacher, unlocking God's Word.",
-      "'Compassionate' describes me - for God's things, for you. With God's Word, let's prevail!",
-      "Married, family man, and passionate about God's Kingdom... Let's journey together, Prevailers!",
-      "God's promises are 'yes' in Jesus (2 Cor 1:20). Let's walk in that yes! Join me, let's prevail in prayer, in love, in service. God's best is for Region 61!"
+      "As a lawyer by profession, I'd chase justice... but Jesus called me to preach GRACE.",
+      "God's best is for Region 61!"
     ],
     accent: "border-blue-600"
   },
@@ -26,15 +24,70 @@ const pastors = [
     name: "Pastor Abayomi Akintan",
     role: "Pastor-in-Charge, Elim Sanctuary",
     credentials: "MSc. Facility Management",
-    image: "/assets/pastors/pastor-abayomi.jpg",  
+    image: "/assets/pastors/pastor_abayomi_akintan.jpg",
     message: [
-      "Wow, dear Elim Sanctuary family! I'm humbled, I'm grateful, I'm blessed! To serve God and shepherd this amazing Region 61 family... I don't take it for granted.",
-      "With a Master's in Facility Management, I manage spaces... but Jesus manages hearts... and I'm grateful He uses me!",
-      "To you, dear saints, THANK YOU for partnering with me! Let's keep building, let's keep loving, let's keep pointing to Jesus!",
-      "'The fear of the Lord is the beginning of wisdom' (Proverbs 9:10). I'm trusting God with every step!",
+      "Wow, dear Elim Sanctuary family! I'm humbled, I'm grateful, I'm blessed!",
+      "Jesus manages hearts... and I'm grateful He uses me!",
       "Let's impact Region 61 for Christ!"
     ],
-    accent: "border-gold-600" 
+    accent: "border-gold-600"
+  }
+];
+
+const ministers = [
+  {
+    name: "A/P Tunde Ogunyemi",
+    role: "Workers Leader",
+    description: "Dedicated to coordinating the engine room of the church and empowering every worker for excellence.",
+    image: "/assets/pastors/tunde_ogunyemi.jpg"
+  },
+  {
+    name: "Pastor Abayomi Akintan",
+    role: "Zonal Pastor",
+    description: "Shepherding the zone with a vision for expansion and spiritual growth across all parishes.",
+    image: "/assets/pastors/abayomi_akintan_zonal.jpg"
+  },
+  {
+    name: "Pastor Tunde Balogun",
+    role: "Parish Pastor",
+    description: "Leading the local assembly with a passion for the Word and community transformation.",
+    image: "/assets/pastors/tunde_balogun.jpg"
+  },
+  {
+    name: "A/P Julius Oladiran",
+    role: "Assistant Pastor",
+    description: "Committed to supporting the vision and ensuring the spiritual well-being of the flock.",
+    image: "/assets/pastors/julius_oladiran.jpg"
+  },
+  {
+    name: "Pastor Mrs. Akintan",
+    role: "Zonal Mummy",
+    description: "A mother in Israel, providing spiritual guidance and support to the women and families in the zone.",
+    image: "/assets/pastors/mrs_akintan.jpg"
+  },
+  {
+    name: "Pastor Femi Majekodunmi",
+    role: "Minister in Charge of Youth",
+    description: "Empowering the next generation to take their place in the kingdom and the marketplace.",
+    image: "/assets/pastors/femi_majekodunmi.jpg"
+  },
+  {
+    name: "Bro. Jegede",
+    role: "Minister",
+    description: "Serving with humility and strength in the advancement of God's kingdom within the sanctuary.",
+    image: "/assets/pastors/bro_jegede.jpg"
+  },
+  {
+    name: "Deacon Felix",
+    role: "Church Administrator",
+    description: "Ensuring the smooth running of church operations and administrative excellence.",
+    image: "/assets/pastors/deacon_felix.jpg"
+  },
+  {
+    name: "Bro. Samson Oladele",
+    role: "Minister",
+    description: "Dedicated to service and contributing to the spiritual vibrancy of the church family.",
+    image: "/assets/pastors/samson_oladele.jpg"
   }
 ];
 
@@ -49,44 +102,62 @@ export default function OurPastorsPage() {
         </p>
       </section>
 
+      {/* Main Pastors Section */}
       <section className="max-w-6xl mx-auto px-6 -mt-10">
         <div className="grid grid-cols-1 gap-12">
-          {pastors.map((pastor, index) => (
-            <div 
-              key={index} 
-              className={`flex flex-col lg:flex-row bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 ${pastor.accent}`}
-            >
-              {/* Image Container */}
+          {mainPastors.map((pastor, index) => (
+            <div key={index} className={`flex flex-col lg:flex-row bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 ${pastor.accent}`}>
               <div className="lg:w-1/3 relative h-100 lg:h-auto overflow-hidden">
-                <Image
-                  src={pastor.image}
-                  alt={pastor.name}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  priority={index === 0}
-                />
+                <Image src={pastor.image} alt={pastor.name} fill className="object-cover" priority={index === 0} />
+              </div>
+              <div className="lg:w-2/3 p-8 md:p-12 flex flex-col justify-center">
+                <h2 className="text-3xl font-bold text-slate-900">{pastor.name}</h2>
+                <p className="text-blue-600 font-semibold uppercase tracking-wider text-sm mb-4">{pastor.role}</p>
+                <div className="space-y-4 text-slate-700 italic">
+                  {pastor.message.map((para, i) => <p key={i}>{para}</p>)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Other Ministers Section (Twitter Card Style) */}
+      <section className="max-w-6xl mx-auto px-6 mt-24">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-slate-900">Our Ministers</h2>
+          <div className="h-1 w-20 bg-blue-600 mx-auto mt-4 rounded-full" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ministers.map((minister, index) => (
+            <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              {/* Card Image */}
+              <div className="shrink-0">
+                <div className="relative w-32 h-32 rounded-xl overflow-hidden border-2 border-slate-50">
+                  <Image
+                    src={minister.image}
+                    alt={minister.name}
+                    fill
+                    sizes="w-32 h-32"
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
-              {/* Content Container */}
-              <div className="lg:w-2/3 p-8 md:p-12 flex flex-col justify-center">
-                <div className="mb-6">
-                  <h2 className="text-3xl font-bold text-slate-900">{pastor.name}</h2>
-                  <p className="text-blue-600 font-semibold uppercase tracking-wider text-sm">
-                    {pastor.role}
-                  </p>
-                  <span className="inline-block mt-2 px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">
-                    {pastor.credentials}
+              {/* Card Content */}
+              <div className="flex flex-col">
+                <div className="flex flex-col mb-1">
+                  <h3 className="font-bold text-slate-900 text-base leading-tight">
+                    {minister.name}
+                  </h3>
+                  <span className="text-blue-600 text-xs font-semibold">
+                    {minister.role}
                   </span>
                 </div>
-
-                <div className="relative">
-                  <Quote className="absolute -left-6 -top-4 w-10 h-10 text-slate-100 -z-10" />
-                  <div className="space-y-4 text-slate-700 leading-relaxed italic">
-                    {pastor.message.map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
-                </div>
+                <p className="text-slate-600 text-sm leading-snug">
+                  {minister.description}
+                </p>
               </div>
             </div>
           ))}
