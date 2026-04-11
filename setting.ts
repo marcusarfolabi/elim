@@ -3,8 +3,8 @@ import { User, Church, Heart, BookOpen } from "lucide-react";
 export const NAVLINKS = [
   { name: "Our Pastors", href: "/our-pastors", icon: User },
   { name: "Our Pillars", href: "/our-pillar", icon: Church },
-  { name: "Salvation", href: "/salvation", icon: Heart },
-  { name: "Our Resources", href: "/resources", icon: BookOpen },
+  { name: "Men's Fellowship", href: "/men-fellowship", icon: Heart },
+  { name: "Our Resources", href: "/our-resources", icon: BookOpen },
 ];
 
 export type Resource = {

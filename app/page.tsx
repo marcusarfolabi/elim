@@ -26,10 +26,10 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: "easeOut"  
+      ease: "easeOut"
     }
   },
-}; 
+};
 
 export default function Home() {
   return (
@@ -85,7 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ResourcesGrid />
+      <ResourcesGrid limit={4} />
       <AsymmetricGallery />
       <IdentitySection />
     </main>

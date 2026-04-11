@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Resource, RESOURCES } from "@/setting";
 import { useState } from "react";
+import Link from "next/link";
 
 const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -23,19 +24,23 @@ const cardVariants: Variants = {
     },
 };
 
-export function ResourcesGrid() {
+export function ResourcesGrid({ limit }: { limit?: number }) {
+    // Determine which items to show
+    const displayResources = limit ? RESOURCES.slice(0, limit) : RESOURCES;
     return (
         <section className="py-24 bg-background">
             <div className="max-w-7xl mx-auto px-4">
-                <div className="text-center mb-16">
+                {limit && RESOURCES.length > limit && (<div className="text-center mb-16">
                     <h2 className="text-brand-red font-bold tracking-[0.3em] text-xs uppercase mb-3">Digital Library</h2>
                     <h3 className="text-4xl md:text-6xl font-bold text-brand-blue dark:text-white tracking-tight">
                         GROWTH RESOURCES
                     </h3>
                 </div>
+                )}
+
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {RESOURCES.map((item) => (
+                    {displayResources.map((item) => (
                         <Dialog key={item.slug}>
                             <motion.div
                                 variants={cardVariants}
@@ -134,6 +139,15 @@ export function ResourcesGrid() {
                         </Dialog>
                     ))}
                 </div>
+                {limit && RESOURCES.length > limit && (
+                    <div className="mt-7 text-center">
+                        <Button asChild className="rounded-2xl px-8 h-14 font-bold bg-brand-blue hover:opacity-90">
+                            <Link href="/our-resources">
+                                SEE ALL RESOURCES
+                            </Link>
+                        </Button>
+                    </div>
+                )}
             </div>
         </section>
     );
