@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       <ResourcesGrid limit={4} />
-      <AsymmetricGallery />
+      <AsymmetricGallery limit={5} />
       <IdentitySection />
     </main>
   );

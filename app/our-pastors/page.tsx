@@ -41,7 +41,7 @@ const mainPastors = [
       "Jesus manages hearts... and I'm grateful He uses me!",
       "Let's impact Region 61 for Christ!"
     ],
-    accent: "border-gold-600"
+    accent: "border-green-600"
   }
 ];
 

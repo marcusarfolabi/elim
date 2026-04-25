@@ -1,11 +1,16 @@
 "use client";
 
-import {  useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { ChevronLeft, ChevronRight, X, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { GALLERY_IMAGES } from "@/setting";
+
+// Define the Props interface
+interface GalleryProps {
+    limit?: number;
+}
 
 const gridItemVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -33,13 +38,16 @@ const lightboxVariants: Variants = {
     }),
 };
 
-export function AsymmetricGallery() {
+export function AsymmetricGallery({ limit }: GalleryProps) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [[page, direction], setPage] = useState([0, 0]);
     const [scale, setScale] = useState(1);
 
-    const activeIndex = selectedIndex !== null ? (selectedIndex + page + GALLERY_IMAGES.length) % GALLERY_IMAGES.length : 0;
-    const activeImage = GALLERY_IMAGES[activeIndex];
+    // Slice the images based on the limit prop
+    const displayImages = limit ? GALLERY_IMAGES.slice(0, limit) : GALLERY_IMAGES;
+
+    const activeIndex = selectedIndex !== null ? (selectedIndex + page + displayImages.length) % displayImages.length : 0;
+    const activeImage = displayImages[activeIndex];
 
     const paginate = useCallback((newDirection: number) => {
         setScale(1);
@@ -48,7 +56,6 @@ export function AsymmetricGallery() {
 
     const toggleZoom = () => setScale((prev) => (prev === 1 ? 2 : 1));
 
-    // Updated sequence for 1 Big + 4 Small layout
     const getColSpan = (index: number) => {
         const sequence = [2, 1, 1, 1, 1, 1, 2, 1];
         return sequence[index % sequence.length];
@@ -64,7 +71,7 @@ export function AsymmetricGallery() {
                     </h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                    {GALLERY_IMAGES.map((image, index) => {
+                    {displayImages.map((image, index) => {
                         const span = getColSpan(index);
                         return (
                             <Dialog key={image.id} onOpenChange={(open) => !open && setScale(1)}>
@@ -84,7 +91,7 @@ export function AsymmetricGallery() {
                                             src={image.src}
                                             alt={image.alt}
                                             fill
-                                            sizes="w-12 h-12"
+                                            sizes="(max-width: 768px) 50vw, 25vw"
                                             loading="eager"
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
@@ -95,12 +102,11 @@ export function AsymmetricGallery() {
                                 </DialogTrigger>
 
                                 <DialogContent className="max-w-none w-screen h-screen p-0 bg-black border-none shadow-none focus:outline-none overflow-hidden flex items-center justify-center">
-
                                     {/* UI LAYER */}
                                     <div className="absolute inset-0 z-50 flex flex-col justify-between pointer-events-none">
                                         <div className="w-full flex items-center justify-between p-6 pointer-events-auto">
                                             <p className="text-white/40 font-mono text-[10px] tracking-[0.5em] hidden md:block uppercase">
-                                                VIEW // {activeImage.id}
+                                                VIEW // {activeImage?.id}
                                             </p>
                                             <div className="flex gap-3 ml-auto">
                                                 <button onClick={toggleZoom} className="bg-white/10 hover:bg-white/20 p-2 rounded-full text-white transition-all backdrop-blur-md">
@@ -123,9 +129,9 @@ export function AsymmetricGallery() {
                                             </div>
                                         )}
 
-                                        <div className="w-full p-8 md:p-12 bg-linear-to-t from-black via-black/60 to-transparent pointer-events-auto">
+                                        <div className="w-full p-8 md:p-12 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-auto">
                                             <h4 className="text-white text-xl md:text-3xl font-black capitalize tracking-tighter">
-                                                {activeImage.alt}
+                                                {activeImage?.alt}
                                             </h4>
                                         </div>
                                     </div>
@@ -145,14 +151,15 @@ export function AsymmetricGallery() {
                                                 dragConstraints={{ left: -300, right: 300, top: -300, bottom: 300 }}
                                                 className="relative w-full h-full"
                                             >
-                                                <Image
-                                                    src={activeImage.src}
-                                                    alt={activeImage.alt}
-                                                    fill
-                                                    sizes="h-12 w-12"
-                                                    unoptimized
-                                                    className="object-contain select-none p-4"
-                                                />
+                                                {activeImage && (
+                                                    <Image
+                                                        src={activeImage.src}
+                                                        alt={activeImage.alt}
+                                                        fill
+                                                        unoptimized
+                                                        className="object-contain select-none p-4"
+                                                    />
+                                                )}
                                             </motion.div>
                                         </AnimatePresence>
                                     </div>
