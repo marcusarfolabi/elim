@@ -14,7 +14,6 @@ export default async function TestimonySection() {
     if (!testimonies || testimonies.length === 0) {
         return <p className="text-center py-10">No shared testimonies found in database.</p>;
     }
-    
     return (
         <section className="py-10 bg-background overflow-hidden border-t border-border">
 

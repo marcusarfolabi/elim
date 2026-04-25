@@ -8,6 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroupTextarea } from "@/components/ui/input-group";
+// Assuming you have a Select component in your UI library
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
 import { saveTestimony } from "@/app/actions/send-testimony";
 import toast from "react-hot-toast";
 
@@ -15,10 +23,12 @@ const testimonySchema = z.object({
     name: z.string().min(2, "Full name is required"),
     email: z.string().email("Invalid email").optional().or(z.literal("")),
     phone: z.string().min(10, "Valid phone number is required"),
-    category: z.string().min(1, "Please select a category (e.g. Healing, Financial)"),
+    category: z.string().min(1, "Please select a category"),
     title: z.string().optional(),
-    testimony: z.string().min(20, "Please share a bit more detail about what God has done"),
-    canShare: z.string().min(1, "Please indicate your sharing preference"),
+    testimony: z.string().min(20, "Please share a bit more detail"),
+    canShare: z.enum(["yes", "no"], {
+        message: "Please indicate your sharing preference",
+    }),
 });
 
 type TestimonyValues = z.infer<typeof testimonySchema>;
@@ -27,7 +37,7 @@ export function TestimonyForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const form = useForm<TestimonyValues>({
         resolver: zodResolver(testimonySchema),
-        defaultValues: { name: "", email: "", phone: "", category: "", title: "", testimony: "", canShare: "" },
+        defaultValues: { name: "", email: "", phone: "", category: "", title: "", testimony: "", canShare: "yes" },
     });
 
     const onSubmit = async (values: TestimonyValues) => {
@@ -36,7 +46,7 @@ export function TestimonyForm() {
         setIsSubmitting(false);
 
         if (result.success) {
-            toast.success("Hallelujah! Your testimony has been submitted.");
+            toast.success("Hallelujah! Your testimony has been shared.");
             form.reset();
         } else {
             toast.error(`Error: ${result.error}`);
@@ -83,13 +93,23 @@ export function TestimonyForm() {
                             </Field>
                         )}
                     />
+
+                    {/* Updated canShare to use a Select dropdown */}
                     <Controller
                         name="canShare"
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel>Can we share this with the church?</FieldLabel>
-                                <Input {...field} placeholder="Public / Private" className="bg-muted/50" />
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <SelectTrigger className="bg-muted/50">
+                                        <SelectValue placeholder="Select preference" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="yes">Yes, share to inspire others</SelectItem>
+                                        <SelectItem value="no">No, keep this private</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                             </Field>
                         )}
@@ -126,7 +146,7 @@ export function TestimonyForm() {
                 />
             </FieldGroup>
 
-            <Button type="submit" disabled={isSubmitting} className="w-full bg-brand-blue cursor-pointer hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest">
+            <Button type="submit" disabled={isSubmitting} className="w-full bg-brand-blue cursor-pointer hover:bg-brand-blue/90 text-white font-bold py-6 uppercase tracking-widest transition-all active:scale-[0.98]">
                 {isSubmitting ? "Submitting..." : "Submit Testimony"}
             </Button>
         </form>
