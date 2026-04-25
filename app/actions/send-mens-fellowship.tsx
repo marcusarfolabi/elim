@@ -18,7 +18,7 @@ export async function sendMensFellowshipEmail(data: {
     try {
         const { error } = await resend.emails.send({
             from: "Men's Fellowship <fellowship@vaspayment.us>",
-            to: [process.env.MENS_PRESIDENT_EMAIL || "edgevarsity0605@gmail.com"],
+            to: [process.env.MENS_PRESIDENT_EMAIL || "elimsanctuarypayment2020@gmail.com"],
             subject: `New Member Interest: ${data.name}`,
             react: (
                 <MensFellowshipEmail {...data} />

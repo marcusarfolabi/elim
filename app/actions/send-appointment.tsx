@@ -17,7 +17,7 @@ export async function sendAppointmentEmail(data: {
     try {
         const { error } = await resend.emails.send({
             from: "RCCG - Elim Sanctuary <appointments@vaspayment.us>",
-            to: [process.env.PASTOR_EMAIL || "edgevarsity0605@gmail.com"],
+            to: [process.env.PASTOR_EMAIL || "elimsanctuarypayment2020@gmail.com"],
             subject: `Appointment Request: ${data.name}`,
             react: (
                 <AppointmentEmail

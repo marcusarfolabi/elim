@@ -18,7 +18,7 @@ export async function sendChoirEmail(data: {
     try {
         const { error } = await resend.emails.send({
             from: "Elim Choir Ministry <choir@vaspayment.us>",
-            to: [process.env.CHOIR_LEADER_EMAIL || "edgevarsity0605@gmail.com"],
+            to: [process.env.CHOIR_LEADER_EMAIL || "elimsanctuarypayment2020@gmail.com"],
             subject: `[Choir App] ${data.vocalPart} - ${data.name}`,
             react: (<ChoirEmail {...data} />) as ReactElement,
         });

@@ -18,7 +18,7 @@ export async function sendTestimonyEmail(data: {
     try {
         const { error } = await resend.emails.send({
             from: "Church Testimonies <testimonies@vaspayment.us>",
-            to: [process.env.PASTOR_EMAIL || "edgevarsity0605@gmail.com"],
+            to: [process.env.PASTOR_EMAIL || "elimsanctuarypayment2020@gmail.com"],
             subject: `[Testimony - ${data.category}] ${data.name}`,
             react: (
                 <TestimonyEmail {...data} />
