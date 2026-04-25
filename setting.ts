@@ -308,8 +308,8 @@ export const IDENTITY_CARDS = [
 
 export const FOOTER_DATA = {
   address:
-    "2 Ogbomosho Avenue, Behind Jimmyco Filling Station. Iyana Dopemu, Akowonjo Lagos",
-  phone: "08033157281",
+    "34-36 Alimosho Road, Off Lagos-Abeokuta Expressway, By Go-Ye Junction, Akowonjo Lagos",
+  phone: "+2348033030090",
   email: "info@rccg-elimsanctuary.org",
   socials: [
     {
