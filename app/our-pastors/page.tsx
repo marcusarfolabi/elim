@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Metadata } from "next";
-import { Quote } from "lucide-react";
+import { Metadata } from "next"; 
 
 export const metadata: Metadata = {
   title: "Our Pastors | RCCG Elim Sanctuary",
@@ -19,6 +18,18 @@ const mainPastors = [
       "God's best is for Region 61!"
     ],
     accent: "border-blue-600"
+  },
+  {
+    name: "Pastor Kemisola Debo Akande",
+    role: "Regional Pastor, Prevailers Region 61",
+    credentials: "Lawyer by Profession",
+    image: "/assets/pastors/pastor_kemisola_akande.jpg",
+    message: [
+      " Hello, dear Elim Sanctuary family! I'm Pastor Kemisola Debo Akande, your Regional Pastor, Prevailers Region 61.",
+      "As a lawyer by profession, I was trained to advocate... but Jesus called me to intercede.",
+      "Let's impact Region 61 for Christ!"
+    ],
+    accent: "border-pink-600"
   },
   {
     name: "Pastor Abayomi Akintan",
@@ -48,7 +59,7 @@ const ministers = [
     image: "/assets/pastors/abayomi_akintan_zonal.jpg"
   },
   {
-    
+
     name: "Pastor Femi Majekodunmi",
     role: "Minister in Charge of Youth",
     description: "Leading the local assembly with a passion for the Word and community transformation.",
