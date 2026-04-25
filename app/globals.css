@@ -216,6 +216,33 @@ body {
 }
 
 @layer base {
+  ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+  
+    ::-webkit-scrollbar-track {
+      background: var(--background);
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      background: var(--muted-foreground);
+      border: 1px solid var(--background);
+      border-radius: 50px;
+      transition: background 0.3s ease;
+    }
+  
+    ::-webkit-scrollbar-thumb:hover {
+      /* Uses your official brand blue for the hover state */
+      background: var(--brand-blue);
+    }
+  
+    /* Firefox support */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--muted-foreground) var(--background);
+    }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -227,4 +254,5 @@ body {
   html {
     @apply font-sans;
   }
+
 }

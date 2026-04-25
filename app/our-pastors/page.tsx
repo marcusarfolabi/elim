@@ -94,15 +94,19 @@ export default function OurPastorsPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> 
 
-      {/* Scripture Footer */}
       <section className="mt-32 text-center px-6">
-        <div className="max-w-3xl mx-auto p-10 border-2 border-dashed border-border rounded-[3rem] bg-brand-accent/50">
-          <p className="text-xl md:text-2xl text-muted-foreground italic leading-relaxed">
+        <div className="max-w-4xl mx-auto p-12 border-2 border-dashed border-border rounded-[3rem] bg-brand-accent/30 relative">
+          {/* Decorative Quote Mark */}
+          <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-background px-4 text-brand-red text-4xl font-serif">
+            &ldquo;
+          </span>
+
+          <p className="text-xl md:text-2xl text-muted-foreground  leading-relaxed">
             &quot;And I will give you shepherds after my own heart, who will feed you with knowledge and understanding.&quot;
           </p>
-          <p className="mt-6 font-black text-brand-blue dark:text-brand-gold uppercase tracking-widest">
+          <p className="mt-6 font-black text-brand-blue dark:text-brand-gold uppercase tracking-widest text-sm">
             — Jeremiah 3:15
           </p>
         </div>

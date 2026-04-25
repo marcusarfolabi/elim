@@ -35,15 +35,21 @@ export default function OurResourcesPage() {
                     <ResourcesGrid /> 
                 </div>
             </section>
-
-            {/* Optional: Simple Footer Quote */}
-            <section className="mt-20 text-center px-6">
-                <p className="text-muted-foreground italic text-sm">
-                    &quot;Study to shew thyself approved unto God, a workman that needeth not to be ashamed...&quot;
-                    <span className="block mt-1 font-bold text-brand-blue dark:text-brand-gold uppercase tracking-widest text-[10px]">
-                        — 2 Timothy 2:15
+ 
+            <section className="mt-32 text-center px-6">
+                <div className="max-w-4xl mx-auto p-12 border-2 border-dashed border-border rounded-[3rem] bg-brand-accent/30 relative">
+                    {/* Decorative Quote Mark */}
+                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-background px-4 text-brand-red text-4xl font-serif">
+                        &ldquo;
                     </span>
-                </p>
+
+                    <p className="text-xl md:text-2xl text-muted-foreground  leading-relaxed">
+                        &quot;Study to shew thyself approved unto God, a workman that needeth not to be ashamed...&quot;
+                    </p>
+                    <p className="mt-6 font-black text-brand-blue dark:text-brand-gold uppercase tracking-widest text-sm">
+                        — 2 Timothy 2:15
+                    </p>
+                </div>
             </section>
         </main>
     );

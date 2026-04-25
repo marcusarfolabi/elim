@@ -7,12 +7,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Moon, Sun, Heart } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { NAVLINKS } from "@/setting"; 
+import { NAVLINKS } from "@/setting";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);  
+  const [mounted, setMounted] = React.useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
@@ -20,12 +20,12 @@ export function Navbar() {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []); 
+  }, []);
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
-          ? "bg-background/70 backdrop-blur-md border-b shadow-sm"
-          : "bg-transparent"
+        ? "bg-background/70 backdrop-blur-md border-b shadow-sm"
+        : "bg-transparent"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +36,7 @@ export function Navbar() {
             <div className="relative w-12 h-12">
               <Image
                 src="/favicon-96x96.png"
-                alt="RCCG Logo"                
+                alt="RCCG Logo"
                 fill
                 sizes="w-96 h-96"
                 className="object-contain"
@@ -79,13 +79,13 @@ export function Navbar() {
                   <Moon className="h-5 w-5 text-brand-blue transition-all cursor-pointer" />
                 )
               ) : (
-                <div className="h-5 w-5 cursor-pointer" />  
+                <div className="h-5 w-5 cursor-pointer" />
               )}
             </Button>
 
             {/* Donation CTA */}
             {/* route to donation page route */}
-            
+
             <Link href="/donation" passHref legacyBehavior>
               <Button className="bg-brand-red cursor-pointer hover:bg-red-700 text-white rounded-full px-6 shadow-lg shadow-red-500/20 transition-transform hover:scale-105">
                 <Heart className="mr-2 h-4 w-4 fill-current" />
@@ -139,9 +139,15 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4">
-                <Button className="w-full bg-brand-red py-6 text-lg rounded-xl">
-                  DONATION
-                </Button>
+                <Link href="/donation" passHref legacyBehavior>
+                  <Button
+                    className="w-full bg-brand-red py-6 text-lg rounded-xl"
+                    onClick={() => setIsOpen(false)} // ADD THIS LINE HERE
+                  >
+                    <Heart className="mr-2 h-4 w-4 fill-current" />
+                    DONATION
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>

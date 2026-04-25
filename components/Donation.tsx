@@ -109,16 +109,18 @@ export default function DonationPage() {
                 </div>
 
                 {/* Footer Note */}
-                <div className="mt-20 text-center">
-                    <div className="inline-block p-10 bg-card rounded-[3rem] shadow-sm border border-border max-w-2xl">
-                        <p className="text-muted-foreground text-lg italic leading-relaxed">
-                            &quot;Each of you should give what you have decided in your heart to give,
-                            not reluctantly or under compulsion, for God loves a cheerful giver.&quot;
-                        </p>
-                        <p className="text-brand-blue dark:text-brand-gold font-black uppercase tracking-widest mt-6">
-                            — 2 Corinthians 9:7
-                        </p>
-                    </div>
+                <div className="max-w-4xl mx-auto p-12 mt-32 border-2 border-dashed border-border rounded-[3rem] bg-brand-accent/30 relative">
+                    {/* Decorative Quote Mark */}
+                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-background px-4 text-brand-red text-4xl font-serif">
+                        &ldquo;
+                    </span>
+
+                    <p className="text-xl md:text-2xl text-muted-foreground  leading-relaxed">
+                        &quot;Each of you should give what you have decided in your heart to give,
+                        not reluctantly or under compulsion, for God loves a cheerful giver.&quot;                        </p>
+                    <p className="mt-6 font-black text-brand-blue dark:text-brand-gold uppercase tracking-widest text-sm">
+                        — 2 Corinthians 9:7
+                    </p>
                 </div>
             </div>
         </main>

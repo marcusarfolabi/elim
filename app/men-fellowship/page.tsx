@@ -54,7 +54,7 @@ export default function MenFellowshipPage() {
             &ldquo;
           </span>
           
-          <p className="text-xl md:text-2xl text-muted-foreground italic leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
             &quot;Though one may be overpowered, two can defend themselves. A cord of three strands is not quickly broken.&quot;
           </p>
           <p className="mt-6 font-black text-brand-blue dark:text-brand-gold uppercase tracking-widest text-sm">
