@@ -69,8 +69,8 @@ export function ModernFooter() {
 
                         <div className="relative w-full h-75 rounded-3xl overflow-hidden border border-border group">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.245228540847!2d3.3000673747541655!3d6.616422793377759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b916f1c712867%3A0x6b801a6104675b3c!2s2%20Ogbomosho%20Ave%2C%20Alimosho%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000"
-                                className="w-full h-full grayscale opacity-50 dark:invert group-hover:opacity-100 transition-opacity duration-700"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.2756881541923!2d3.2972644739941215!3d6.612628493381405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9100358f2d9d%3A0x4777fd9872983b97!2s34%20Alimosho%20Rd%2C%20Lagos%2C%20Ikeja%20102213%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2ske!4v1777104970069!5m2!1sen!2ske"
+                                className="w-full h-full dark:invert group-hover:opacity-100 transition-opacity duration-700"
                                 loading="lazy"
                             />
                             <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.2)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]" />
