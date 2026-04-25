@@ -160,6 +160,7 @@ export const RESOURCES: Resource[] = [
     ageGroup: "General",
   },
 ];
+
 export type GalleryImage = {
   id: string;
   src: string;
@@ -336,3 +337,67 @@ export const FOOTER_DATA = {
     { name: "CHOIR APPLICATION", href: "#" },
   ],
 };
+
+export const menFellowship = [
+  {
+    name: "Abiola",
+    image: "/assets/men/abiola.png",
+    accent: "border-blue-600",
+  },
+  {
+    name: "Adeyemi",
+    image: "/assets/men/adeyemi.png",
+    accent: "border-red-600",
+  },
+  {
+    name: "felix",
+    image: "/assets/men/felix.png",
+    accent: "border-yellow-600",
+  },
+  {
+    name: "femi",
+    image: "/assets/men/femi.png",
+    accent: "border-green-600",
+  },
+  {
+    name: "kunle",
+    image: "/assets/men/kunle.png",
+    accent: "border-pink-600",
+  },
+  {
+    name: "linus",
+    image: "/assets/men/linus.png",
+    accent: "border-purple-600",
+  },
+  {
+    name: "matthew",
+    image: "/assets/men/matthew.png",
+    accent: "border-black",
+  },
+  {
+    name: "olawale",
+    image: "/assets/men/olawale.png",
+    accent: "border-gray-600",
+  },
+  {
+    name: "olayiwola",
+    image: "/assets/men/olayiwola.png",
+    accent: "border-blue-600",
+  },
+  {
+    name: "oyeniyi",
+    image: "/assets/men/oyeniyi.png",
+    accent: "border-green-600",
+  },
+  {
+    name: "samson",
+    image: "/assets/men/samson.png",
+    accent: "border-yellow-600",
+  },
+  {
+    name: "tolu",
+    image: "/assets/men/tolu.png",
+    accent: "border-orange-600",
+  },
+];
+

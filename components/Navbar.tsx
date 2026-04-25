@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Moon, Sun, Heart } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { NAVLINKS } from "@/setting";
+import { NAVLINKS } from "@/setting"; 
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -20,8 +20,7 @@ export function Navbar() {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  }, []); 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
@@ -85,10 +84,14 @@ export function Navbar() {
             </Button>
 
             {/* Donation CTA */}
-            <Button className="bg-brand-red cursor-pointer hover:bg-red-700 text-white rounded-full px-6 shadow-lg shadow-red-500/20 transition-transform hover:scale-105">
-              <Heart className="mr-2 h-4 w-4 fill-current" />
-              DONATION
-            </Button>
+            {/* route to donation page route */}
+            
+            <Link href="/donation" passHref legacyBehavior>
+              <Button className="bg-brand-red cursor-pointer hover:bg-red-700 text-white rounded-full px-6 shadow-lg shadow-red-500/20 transition-transform hover:scale-105">
+                <Heart className="mr-2 h-4 w-4 fill-current" />
+                DONATION
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}

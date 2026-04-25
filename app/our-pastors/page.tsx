@@ -42,19 +42,20 @@ const ministers = [
     image: "/assets/pastors/tunde_ogunyemi.jpg"
   },
   {
-    name: "Pastor Abayomi Akintan",
+    name: "A/P Julius Oladiran",
     role: "Zonal Pastor",
     description: "Shepherding the zone with a vision for expansion and spiritual growth across all parishes.",
     image: "/assets/pastors/abayomi_akintan_zonal.jpg"
   },
   {
-    name: "Pastor Tunde Balogun",
-    role: "Parish Pastor",
+    
+    name: "Pastor Femi Majekodunmi",
+    role: "Minister in Charge of Youth",
     description: "Leading the local assembly with a passion for the Word and community transformation.",
     image: "/assets/pastors/tunde_balogun.jpg"
   },
   {
-    name: "A/P Julius Oladiran",
+    name: "Pastor Abayomi Akintan ",
     role: "Assistant Pastor",
     description: "Committed to supporting the vision and ensuring the spiritual well-being of the flock.",
     image: "/assets/pastors/julius_oladiran.jpg"
@@ -66,8 +67,8 @@ const ministers = [
     image: "/assets/pastors/mrs_akintan.jpg"
   },
   {
-    name: "Pastor Femi Majekodunmi",
-    role: "Minister in Charge of Youth",
+    name: "Pastor Tunde Balogun",
+    role: "Parish Pastor",
     description: "Empowering the next generation to take their place in the kingdom and the marketplace.",
     image: "/assets/pastors/femi_majekodunmi.jpg"
   },
