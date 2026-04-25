@@ -43,8 +43,8 @@ const ministers = [
   },
   {
     name: "A/P Julius Oladiran",
-    role: "Zonal Pastor",
-    description: "Shepherding the zone with a vision for expansion and spiritual growth across all parishes.",
+    role: "Minister in Charge of SOD",
+    description: "Leading the SOD ministry with a heart for discipleship and spiritual growth within the sanctuary.",
     image: "/assets/pastors/abayomi_akintan_zonal.jpg"
   },
   {
@@ -55,7 +55,7 @@ const ministers = [
     image: "/assets/pastors/tunde_balogun.jpg"
   },
   {
-    name: "Pastor Abayomi Akintan ",
+    name: "Pastor Tunde Balogun",
     role: "Assistant Pastor",
     description: "Committed to supporting the vision and ensuring the spiritual well-being of the flock.",
     image: "/assets/pastors/julius_oladiran.jpg"
@@ -67,7 +67,7 @@ const ministers = [
     image: "/assets/pastors/mrs_akintan.jpg"
   },
   {
-    name: "Pastor Tunde Balogun",
+    name: "Pastor Abayomi Akintan",
     role: "Parish Pastor",
     description: "Empowering the next generation to take their place in the kingdom and the marketplace.",
     image: "/assets/pastors/femi_majekodunmi.jpg"
