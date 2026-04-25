@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroupTextarea } from "@/components/ui/input-group";
-import { sendTestimonyEmail } from "@/app/actions/send-testimony";
+import { saveTestimony } from "@/app/actions/send-testimony";
 import toast from "react-hot-toast";
 
 const testimonySchema = z.object({
@@ -32,7 +32,7 @@ export function TestimonyForm() {
 
     const onSubmit = async (values: TestimonyValues) => {
         setIsSubmitting(true);
-        const result = await sendTestimonyEmail(values);
+        const result = await saveTestimony(values);
         setIsSubmitting(false);
 
         if (result.success) {

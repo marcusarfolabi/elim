@@ -173,6 +173,17 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -208,9 +219,11 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }

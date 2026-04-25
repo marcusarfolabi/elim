@@ -1,12 +1,8 @@
 "use server";
 
-import { Resend } from "resend";
-import { TestimonyEmail } from "@/components/templates/testimony-email";
-import { ReactElement } from "react";
+import { createClient } from "@/lib/supabase";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function sendTestimonyEmail(data: {
+export async function saveTestimony(data: {
     name: string;
     email?: string;
     phone: string;
@@ -16,19 +12,26 @@ export async function sendTestimonyEmail(data: {
     canShare: string;
 }) {
     try {
-        const { error } = await resend.emails.send({
-            from: "Church Testimonies <testimonies@vaspayment.us>",
-            to: [process.env.PASTOR_EMAIL || "elimsanctuarypayment2020@gmail.com"],
-            subject: `[Testimony - ${data.category}] ${data.name}`,
-            react: (
-                <TestimonyEmail {...data} />
-            ) as ReactElement,
-        });
+        const supabase = createClient();
+        const { error } = await supabase
+            .from('testimonies')
+            .insert([
+                {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone,
+                    category: data.category,
+                    title: data.title,
+                    testimony: data.testimony,
+                    can_share: data.canShare
+                }
+            ]);
 
-        if (error) return { success: false, error: error.message };
+        if (error) throw error;
+
         return { success: true };
     } catch (err) {
-        console.error("Testimony Submission Error:", err);
-        return { success: false, error: "Unable to submit testimony at this time." };
+        console.error("Supabase Error:", err);
+        return { success: false, error: "Failed to save testimony to database." };
     }
 }

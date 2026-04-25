@@ -26,7 +26,13 @@ export const metadata: Metadata = {
   },
   description: "Welcome to Elim Sanctuary, a provincial headquarters for RCCG Lagos Province 37. Join us at 2 Ogbomosho Avenue, Akowonjo, Lagos for a life-transforming experience.",
   keywords: ["RCCG", "Elim Sanctuary", "Lagos Province 37", "Church in Akowonjo", "Christian Worship Lagos"],
-  authors: [{ name: "Elim Sanctuary Media" }],
+  alternates: {
+    canonical: "/",
+  },
+  verification: {
+    google: "Oc-JDK15vFYrpJzi4I3Bst6lGQ61dokFS0pkhEMsSBg", // Add this once you have it from Search Console
+  },
+  authors: [{ name: "Elim Sanctuary Media", url: "https://rccg-elimsanctuary.org" }],
   openGraph: {
     title: "Elim Sanctuary - Your Place of Comfort",
     description: "Spreading God's love, grace, and salvation to mankind through our Lord Jesus Christ.",

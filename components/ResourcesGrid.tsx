@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Resource, RESOURCES } from "@/setting";
 import { useState } from "react";
 import Link from "next/link";
+import { SectionHeader } from "./SectionHeader";
 
 const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -30,12 +31,15 @@ export function ResourcesGrid({ limit }: { limit?: number }) {
     return (
         <section className="py-24 bg-background">
             <div className="max-w-7xl mx-auto px-4">
-                {limit && RESOURCES.length > limit && (<div className="text-center mb-16">
-                    <h2 className="text-brand-red font-bold tracking-[0.3em] text-xs uppercase mb-3">Digital Library</h2>
-                    <h3 className="text-4xl md:text-6xl font-bold text-brand-blue dark:text-white tracking-tight">
-                        GROWTH RESOURCES
-                    </h3>
-                </div>
+                {limit && RESOURCES.length > limit && ( 
+                    <SectionHeader
+                        overline="Digital Library"
+                        title="Growth"
+                        accent="Resources" 
+                        align="right"
+                        className="text-brand-blue"
+                        
+                    />
                 )}
 
 

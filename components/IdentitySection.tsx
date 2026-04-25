@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import * as LucideIcons from "lucide-react";
 import { IDENTITY_CARDS } from "@/setting";
+import { SectionHeader } from "./SectionHeader";
 
 type LucideIconName = keyof typeof LucideIcons;
 
@@ -11,7 +12,7 @@ export function IdentitySection() {
     return (
         <section className="py-24 bg-background overflow-hidden transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-4">
-                <div className="mb-16">
+                {/* <div className="mb-16">
                     <motion.span
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -26,7 +27,14 @@ export function IdentitySection() {
                     >
                         See who <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-blue to-green-400">we are</span>
                     </motion.h2>
-                </div>
+                </div> */}
+                <SectionHeader
+                    overline="Our Core Identity"
+                    title="See who"
+                    accent="we are"
+                    align="center"
+                    className="text-brand-blue"
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {IDENTITY_CARDS.map((card, index) => {
@@ -67,7 +75,7 @@ export function IdentitySection() {
                                             {card.description}
                                         </p>
                                     </div>
-                                    
+
                                     <div className="h-1 w-0 group-hover:w-full bg-brand-blue transition-all duration-500" />
                                 </div>
                             </motion.div>

@@ -407,3 +407,101 @@ export const menFellowship = [
   },
 ];
 
+export const mainPastors = [
+  {
+    name: "Pastor Debo Akande",
+    role: "Regional Pastor, Prevailers Region 61",
+    credentials: "Lawyer by Profession",
+    image: "/assets/pastors/pastor_debo_akande.jpg",
+    message: [
+      "Greetings, beloved! I'm Pastor Debo Akande, your Regional Pastor, Prevailers Region 61.",
+      "As a lawyer by profession, I'd chase justice... but Jesus called me to preach GRACE.",
+      "God's best is for Region 61!"
+    ],
+    accent: "border-blue-600"
+  },
+  {
+    name: "Pastor Kemisola Debo Akande",
+    role: "Regional Pastor, Prevailers Region 61",
+    credentials: "Lawyer by Profession",
+    image: "/assets/pastors/pastor_kemisola_akande.jpg",
+    message: [
+      " Hello, dear Elim Sanctuary family! I'm Pastor Kemisola Debo Akande, your Regional Pastor, Prevailers Region 61.",
+      "As a lawyer by profession, I was trained to advocate... but Jesus called me to intercede.",
+      "Let's impact Region 61 for Christ!"
+    ],
+    accent: "border-pink-600"
+  },
+  {
+    name: "Pastor Abayomi Akintan",
+    role: "Pastor-in-Charge, Elim Sanctuary",
+    credentials: "MSc. Facility Management",
+    image: "/assets/pastors/pastor_abayomi_akintan.jpg",
+    message: [
+      "Wow, dear Elim Sanctuary family! I'm humbled, I'm grateful, I'm blessed!",
+      "Jesus manages hearts... and I'm grateful He uses me!",
+      "Let's impact Region 61 for Christ!"
+    ],
+    accent: "border-green-600"
+  }
+];
+
+export const ministers = [
+  {
+    name: "A/P Tunde Ogunyemi",
+    role: "Workers Leader",
+    description: "Dedicated to coordinating the engine room of the church and empowering every worker for excellence.",
+    image: "/assets/pastors/tunde_ogunyemi.jpg"
+  },
+  {
+    name: "A/P Julius Oladiran",
+    role: "Minister in Charge of SOD",
+    description: "Leading the SOD ministry with a heart for discipleship and spiritual growth within the sanctuary.",
+    image: "/assets/pastors/abayomi_akintan_zonal.jpg"
+  },
+  {
+
+    name: "Pastor Femi Majekodunmi",
+    role: "Minister in Charge of Youth",
+    description: "Leading the local assembly with a passion for the Word and community transformation.",
+    image: "/assets/pastors/tunde_balogun.jpg"
+  },
+  {
+    name: "Pastor Tunde Balogun",
+    role: "Assistant Pastor",
+    description: "Committed to supporting the vision and ensuring the spiritual well-being of the flock.",
+    image: "/assets/pastors/julius_oladiran.jpg"
+  },
+  {
+    name: "Pastor Mrs. Akintan",
+    role: "Zonal Mummy",
+    description: "A mother in Israel, providing spiritual guidance and support to the women and families in the zone.",
+    image: "/assets/pastors/mrs_akintan.jpg"
+  },
+  {
+    name: "Pastor Abayomi Akintan",
+    role: "Parish Pastor",
+    description: "Empowering the next generation to take their place in the kingdom and the marketplace.",
+    image: "/assets/pastors/femi_majekodunmi.jpg"
+  },
+  {
+    name: "Bro. Jegede",
+    role: "Minister",
+    description: "Serving with humility and strength in the advancement of God's kingdom within the sanctuary.",
+    image: "/assets/pastors/bro_jegede.jpg"
+  },
+  {
+    name: "Deacon Felix",
+    role: "Church Administrator",
+    description: "Ensuring the smooth running of church operations and administrative excellence.",
+    image: "/assets/pastors/deacon_felix.jpg"
+  },
+  {
+    name: "Bro. Samson Oladele",
+    role: "Minister",
+    description: "Dedicated to service and contributing to the spiritual vibrancy of the church family.",
+    image: "/assets/pastors/samson_oladele.jpg"
+  }
+];
+
+

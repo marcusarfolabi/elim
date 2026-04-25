@@ -6,6 +6,7 @@ import { motion, AnimatePresence, Variants } from "motion/react";
 import { ChevronLeft, ChevronRight, X, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { GALLERY_IMAGES } from "@/setting";
+import { SectionHeader } from "./SectionHeader";
 
 // Define the Props interface
 interface GalleryProps {
@@ -64,12 +65,12 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
     return (
         <section className="py-24 bg-background overflow-hidden">
             <div className="max-w-7xl mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-brand-red font-bold tracking-[0.3em] text-xs uppercase mb-3">Snapshots</h2>
-                    <h3 className="text-4xl md:text-6xl font-bold text-brand-blue dark:text-white tracking-tight">
-                        ELIM LIFE IN MOTION
-                    </h3>
-                </div>
+                <SectionHeader
+                    overline="Visual Journey"
+                    title="Faith in"
+                    accent="Focus"
+                    align="center"  
+                />
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     {displayImages.map((image, index) => {
                         const span = getColSpan(index);

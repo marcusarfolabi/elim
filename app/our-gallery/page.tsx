@@ -1,13 +1,20 @@
 import { AsymmetricGallery } from "@/components/Gallery";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Our Gallery | RCCG Elim Sanctuary",
+    description: "A visual journey of worship, community, and service at RCCG Elim Sanctuary.",
+};
 
 export default function OurGallery() {
     return (
-    <>
-        <div className="container mx-auto px-4 py-8">
+        <main className="min-h-screen bg-background pb-20">
 
-            <AsymmetricGallery limit={100} />
-        </div>
-    </>
 
+            <div className="container mx-auto px-4 mt-8 md:mt-12">
+
+                <AsymmetricGallery limit={100} />
+            </div>
+        </main>
     );
 }
