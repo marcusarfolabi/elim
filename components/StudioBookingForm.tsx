@@ -4,6 +4,18 @@ import type { FormEvent } from "react";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { saveStudioBooking } from "@/app/actions/save-studio-booking";
+import { Button } from "@/components/ui/button";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { InputGroup } from "@/components/ui/input-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const services = [
   "Podcast Studio Setup",
@@ -20,165 +32,243 @@ export function StudioBookingForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [service, setService] = useState("");
+  const [duration, setDuration] = useState("");
+  const [phoneDigits, setPhoneDigits] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const form = event.currentTarget;
+    const booking = {
+      service,
+      duration,
+      date: String(formData.get("date") ?? ""),
+      time: String(formData.get("time") ?? ""),
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      phone: `+234${phoneDigits}`,
+      details: String(formData.get("details") ?? ""),
+    };
     setIsSubmitting(true);
     setErrorMessage("");
     setIsSubmitted(false);
     setSuccessMessage("");
 
+    let result: Awaited<ReturnType<typeof saveStudioBooking>>;
     try {
-      const result = await saveStudioBooking({
-        service: formData.get("service"),
-        duration: formData.get("duration"),
-        date: formData.get("date"),
-        time: formData.get("time"),
-        name: formData.get("name"),
-        email: formData.get("email"),
-        phone: formData.get("phone"),
-        details: formData.get("details"),
-      });
-
-      if (!result.success) {
-        setErrorMessage(result.error);
-        return;
-      }
-
-      form.reset();
-      setIsSubmitted(true);
-      setSuccessMessage(
-        result.emailWarning ??
-          "A receipt was emailed to you and the studio team was notified. Your session is pending studio confirmation.",
-      );
+      result = await saveStudioBooking(booking);
     } catch (error) {
       console.error("Studio booking submission failed:", error);
       setErrorMessage(
         "We couldn’t submit your request. Please try again or contact the studio.",
       );
+      return;
     } finally {
       setIsSubmitting(false);
+    }
+
+    if (!result.success) {
+      setErrorMessage(result.error);
+      return;
+    }
+
+    form.reset();
+    setService("");
+    setDuration("");
+    setPhoneDigits("");
+    setIsSubmitted(true);
+    setSuccessMessage(
+      result.emailWarning ??
+        "A receipt was emailed to you and the studio team was notified. Your session is pending studio confirmation.",
+    );
+
+    const whatsappMessage = [
+      "*ELIM STUDIO | BOOKING REQUEST*",
+      "",
+      "Hello Elim Studio, I’ve submitted a booking request through the website.",
+      "",
+      "*SESSION DETAILS*",
+      `• Service: ${booking.service}`,
+      `• Preferred date: ${booking.date}`,
+      `• Preferred time: ${booking.time || "Flexible"}`,
+      `• Session duration: ${booking.duration}`,
+      "",
+      "*CONTACT DETAILS*",
+      `• Name: ${booking.name}`,
+      `• Email: ${booking.email}`,
+      `• Phone / WhatsApp: ${booking.phone}`,
+      "",
+      "*PROJECT DETAILS*",
+      booking.details,
+      "",
+      "Please confirm availability and share the next steps. Thank you.",
+    ].join("\n");
+
+    try {
+      window.location.assign(
+        `https://wa.me/2348029556990?text=${encodeURIComponent(whatsappMessage)}`,
+      );
+    } catch (error) {
+      console.error("Could not open WhatsApp after saving the booking:", error);
+      setErrorMessage(
+        "Your booking request was saved, but WhatsApp could not be opened. Please contact the studio directly.",
+      );
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
-      <label className="text-sm font-semibold text-foreground">
-        Service
-        <select
+      <Field>
+        <FieldLabel id="studio-service-label">Service</FieldLabel>
+        <Select
           name="service"
           required
-          defaultValue=""
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          value={service}
+          onValueChange={setService}
         >
-          <option value="" disabled>
-            Choose a service
-          </option>
+          <SelectTrigger
+            aria-labelledby="studio-service-label"
+            className="bg-muted/50"
+          >
+            <SelectValue placeholder="Choose a service" />
+          </SelectTrigger>
+          <SelectContent>
           {services.map((service) => (
-            <option key={service} value={service}>
+            <SelectItem key={service} value={service}>
               {service}
-            </option>
+            </SelectItem>
           ))}
-        </select>
-      </label>
+          </SelectContent>
+        </Select>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground">
-        Session duration
-        <select
+      <Field>
+        <FieldLabel id="studio-duration-label">Session duration</FieldLabel>
+        <Select
           name="duration"
           required
-          defaultValue=""
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          value={duration}
+          onValueChange={setDuration}
         >
-          <option value="" disabled>
-            Choose a time block
-          </option>
-          <option>Hourly</option>
-          <option>Half-Day</option>
-          <option>Full-Day</option>
-        </select>
-      </label>
+          <SelectTrigger
+            aria-labelledby="studio-duration-label"
+            className="bg-muted/50"
+          >
+            <SelectValue placeholder="Choose a time block" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Hourly">Hourly</SelectItem>
+            <SelectItem value="Half-Day">Half-Day</SelectItem>
+            <SelectItem value="Full-Day">Full-Day</SelectItem>
+          </SelectContent>
+        </Select>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground">
-        Preferred date
-        <input
+      <Field>
+        <FieldLabel htmlFor="studio-date">Preferred date</FieldLabel>
+        <Input
+          id="studio-date"
           name="date"
           type="date"
           required
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="mt-0 bg-muted/50"
         />
-      </label>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground">
-        Preferred time
-        <input
+      <Field>
+        <FieldLabel htmlFor="studio-time">Preferred time</FieldLabel>
+        <Input
+          id="studio-time"
           name="time"
           type="time"
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="mt-0 bg-muted/50"
         />
-      </label>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground">
-        Full name
-        <input
+      <Field>
+        <FieldLabel htmlFor="studio-name">Full name</FieldLabel>
+        <Input
+          id="studio-name"
           name="name"
           autoComplete="name"
           required
           minLength={2}
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="mt-0 bg-muted/50"
           placeholder="Your name"
         />
-      </label>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground">
-        Email address
-        <input
+      <Field>
+        <FieldLabel htmlFor="studio-email">Email address</FieldLabel>
+        <Input
+          id="studio-email"
           name="email"
           type="email"
           autoComplete="email"
           required
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="mt-0 bg-muted/50"
           placeholder="you@example.com"
         />
-      </label>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground sm:col-span-2">
-        Phone / WhatsApp
-        <input
+      <Field className="sm:col-span-2">
+        <FieldLabel htmlFor="studio-phone">Phone / WhatsApp</FieldLabel>
+        <InputGroup className="flex-row items-center overflow-hidden rounded-lg border border-input bg-muted/50 focus-within:ring-3 focus-within:ring-ring/50">
+          <span
+            aria-hidden="true"
+            className="flex h-12 shrink-0 items-center border-r border-input px-3 text-sm text-muted-foreground"
+          >
+            +234
+          </span>
+          <Input
+            id="studio-phone"
           name="phone"
           type="tel"
-          autoComplete="tel"
+          autoComplete="tel-national"
+          inputMode="numeric"
           required
+          pattern="[0-9]{10}"
           minLength={10}
-          className="mt-2 h-12 w-full rounded-lg border border-input bg-background px-3 text-base font-normal text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-          placeholder="+234..."
+          maxLength={10}
+          value={phoneDigits}
+          onChange={(event) =>
+            setPhoneDigits(event.currentTarget.value.replace(/\D/g, "").slice(0, 10))
+          }
+          aria-describedby="studio-phone-hint"
+          className="mt-0 h-12 flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:border-0 focus-visible:ring-0 dark:bg-transparent"
+          placeholder="9035155129"
         />
-      </label>
+        </InputGroup>
+        <p id="studio-phone-hint" className="text-xs text-muted-foreground">
+          Enter your 10-digit number without the country code.
+        </p>
+      </Field>
 
-      <label className="text-sm font-semibold text-foreground sm:col-span-2">
-        Project details
-        <textarea
+      <Field className="sm:col-span-2">
+        <FieldLabel htmlFor="studio-details">Project details</FieldLabel>
+        <Textarea
+          id="studio-details"
           name="details"
           required
           minLength={10}
           rows={4}
-          className="mt-2 w-full resize-y rounded-lg border border-input bg-background p-3 text-base font-normal text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="mt-0 min-h-32 resize-y bg-muted/50"
           placeholder="Tell us what you’re creating and anything we should know."
         />
-      </label>
+      </Field>
 
       <div className="sm:col-span-2">
-        <button
+        <Button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-13 w-full items-center justify-center gap-3 rounded-full bg-brand-red px-7 font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          size="lg"
+          className="h-13 w-full rounded-full bg-brand-red px-7 font-semibold text-white hover:bg-red-700 sm:w-auto"
         >
-          {isSubmitting ? "Submitting..." : "Submit Booking Request"}
+          {isSubmitting ? "Submitting..." : "Submit & Continue on WhatsApp"}
           <ArrowRight className="h-4 w-4" />
-        </button>
+        </Button>
         {errorMessage && (
           <p role="alert" className="mt-3 text-sm text-destructive">
             {errorMessage}
@@ -191,8 +281,9 @@ export function StudioBookingForm() {
         )}
         {!isSubmitted && !errorMessage && (
           <p className="mt-3 text-xs leading-5 text-muted-foreground">
-            Submitting saves your request. Your session is reserved after the
-            studio confirms availability.
+            Your request is saved and emailed first. WhatsApp then opens with
+            the details ready for you to send. Your session remains pending
+            until the studio confirms availability.
           </p>
         )}
       </div>

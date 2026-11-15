@@ -31,7 +31,7 @@ const studioBookingSchema = z.object({
   ]),
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(254),
-  phone: z.string().trim().min(10).max(32),
+  phone: z.string().regex(/^\+234\d{10}$/),
   details: z.string().trim().min(10).max(3000),
 });
 

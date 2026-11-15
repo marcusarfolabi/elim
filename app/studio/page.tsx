@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import {
   ArrowDown,
   ArrowRight,
@@ -18,6 +17,7 @@ import {
   Video,
 } from "lucide-react";
 import { StudioBookingForm } from "@/components/StudioBookingForm";
+import { StudioGallery } from "@/components/StudioGallery";
 
 const studioPhone = "+234 802 955 6990";
 const whatsappUrl = "https://wa.me/2348029556990";
@@ -161,17 +161,20 @@ export default function StudioPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-background">
       <section className="relative flex min-h-[min(760px,92svh)] items-end overflow-hidden bg-[#080b12] pt-28 text-white">
-        <Image
-          src="/assets/gallery/media.jpg"
-          alt="Elim Sanctuary media team at work"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-45"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080b12] via-[#080b12]/75 to-[#080b12]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080b12] via-transparent to-[#080b12]/25" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-16 sm:px-10 lg:px-12 lg:pb-28">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/assets/studio/500781.jpg"
+          aria-hidden="true"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-center opacity-55"
+        >
+          <source src="/assets/studio/600363.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#080b12] via-[#080b12]/75 to-[#080b12]/25" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#080b12] via-transparent to-[#080b12]/25" />
+        <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-20 pt-16 sm:px-10 lg:px-12 lg:pb-28">
           <div className="max-w-4xl">
             <p className="mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-brand-gold sm:text-sm">
               <span className="h-px w-10 bg-brand-red" />
@@ -233,6 +236,8 @@ export default function StudioPage() {
           </div>
         </div>
       </section>
+
+      <StudioGallery />
 
       <section
         id="services"
