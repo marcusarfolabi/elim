@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Our Pillar | Welcome from the Regional Pastor",
-  description: "A personal welcome message from Pastor Debo Akande, Regional Pastor of RCCG Elim Sanctuary.",
+  description: "A personal welcome message from Pastor Adesina Amos Tugbobo, Regional Pastor of RCCG Elim Sanctuary.",
 };
 
 export default function OurPillarPage() {
@@ -28,8 +28,8 @@ export default function OurPillarPage() {
           <div className="w-full lg:w-5/12 lg:sticky lg:top-24">
             <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl group border border-border">
               <Image
-                src="/assets/pastors/pastor_debo_akande.jpg"
-                alt="Pastor Debo Akande"
+                src="/assets/pastors/Pastor_Adesina_Amos_Tugbobo.jpg"
+                alt="Pastor Adesina Amos Tugbobo"
                 fill
                 sizes="(max-w-768px) 100vw, 40vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -37,7 +37,7 @@ export default function OurPillarPage() {
               />
               {/* Gradient overlay for name legibility */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-10 text-white">
-                <p className="text-2xl font-bold">Pastor Debo Akande</p>
+                <p className="text-2xl font-bold">Pastor Adesina Amos Tugbobo</p>
                 <p className="text-sm opacity-80 uppercase tracking-widest font-semibold mt-1">
                   Regional Pastor, RCCG Elim Sanctuary
                 </p>
@@ -96,7 +96,7 @@ export default function OurPillarPage() {
               <div className="mt-16 pt-10 border-t border-border">
                 <p className="text-foreground font-bold text-xl mb-2">God bless you richly.</p>
                 <p className="text-brand-blue dark:text-brand-gold font-serif text-4xl mb-4 italic">
-                  Pastor Debo Akande
+                  Pastor Adesina Amos Tugbobo
                 </p>
                 <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] font-black">
                   Regional Pastor, RCCG Elim Sanctuary

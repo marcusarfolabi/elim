@@ -15,7 +15,7 @@ export const AppointmentEmail = ({ name, email, phone, purpose, dateTime, source
         <Body style={{ fontFamily: "sans-serif", backgroundColor: "#f9f9f9", padding: "20px" }}>
             <Container style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "8px", border: "1px solid #eee" }}>
                 <Heading style={{ color: "#1a365d", fontSize: "20px" }}>New Appointment Request</Heading>
-                <Text><strong>With:</strong> Pastor Debo Akande</Text>
+                <Text><strong>With:</strong> Pastor Adesina Amos Tugbobo</Text>
                 <Hr />
                 <Text><strong>Full Name:</strong> {name}</Text>
                 <Text><strong>Email:</strong> {email}</Text>

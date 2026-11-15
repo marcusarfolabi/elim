@@ -410,24 +410,24 @@ export const menFellowship = [
 
 export const mainPastors = [
   {
-    name: "Pastor Debo Akande",
+    name: "Pastor Adesina Amos Tugbobo",
     role: "Regional Pastor, Prevailers Region 61",
     credentials: "Lawyer by Profession",
-    image: "/assets/pastors/pastor_debo_akande.jpg",
+    image: "/assets/pastors/Pastor_Adesina_Amos_Tugbobo.jpg",
     message: [
-      "Greetings, beloved! I'm Pastor Debo Akande, your Regional Pastor, Prevailers Region 61.",
+      "Greetings, beloved! I'm Pastor Adesina Amos Tugbobo, your Regional Pastor, Prevailers Region 61.",
       "As a lawyer by profession, I'd chase justice... but Jesus called me to preach GRACE.",
       "God's best is for Region 61!"
     ],
     accent: "border-blue-600"
   },
   {
-    name: "Pastor Kemisola Debo Akande",
+    name: "Pastor Mrs Elizabeth Tugbobo",
     role: "Regional Pastor, Prevailers Region 61",
     credentials: "Lawyer by Profession",
-    image: "/assets/pastors/pastor_kemisola_akande.jpg",
+    image: "/assets/pastors/Pastor_Mrs_Elizabeth_Tugbobo.jpg",
     message: [
-      " Hello, dear Elim Sanctuary family! I'm Pastor Kemisola Debo Akande, your Regional Pastor, Prevailers Region 61.",
+      " Hello, dear Elim Sanctuary family! I'm Pastor Mrs Elizabeth Tugbobo, your Regional Pastor, Prevailers Region 61.",
       "As a lawyer by profession, I was trained to advocate... but Jesus called me to intercede.",
       "Let's impact Region 61 for Christ!"
     ],
