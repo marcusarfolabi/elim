@@ -1,4 +1,4 @@
-import { User, Church, Heart, BookOpen, Image } from "lucide-react";
+import { User, Church, Heart, BookOpen, Image, AudioLines } from "lucide-react";
 
 export const NAVLINKS = [
   { name: "Our Pastors", href: "/our-pastors", icon: User },
@@ -6,6 +6,7 @@ export const NAVLINKS = [
   { name: "Men's Fellowship", href: "/men-fellowship", icon: Heart },
   { name: "Our Resources", href: "/our-resources", icon: BookOpen },
   { name: "Our Gallery", href: "/our-gallery", icon: Image },
+  { name: "Elim Studio", href: "/studio", icon: AudioLines },
 ];
 
 export type Resource = {

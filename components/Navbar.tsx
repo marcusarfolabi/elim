@@ -53,19 +53,19 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-5">
             {NAVLINKS.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium transition-colors flex items-center gap-2 text-foreground/80 hover:text-brand-red dark:text-white/80 dark:hover:text-brand-red"
+                className="whitespace-nowrap text-xs xl:text-sm font-medium transition-colors flex items-center gap-1.5 xl:gap-2 text-foreground/80 hover:text-brand-red dark:text-white/80 dark:hover:text-brand-red"
               >
-                <link.icon className="w-4 h-4 text-brand-blue dark:text-white/80" />
+                <link.icon className="w-3.5 h-3.5 shrink-0 xl:w-4 xl:h-4 text-brand-blue dark:text-white/80" />
                 {link.name}
               </Link>
             ))}
 
-            <div className="h-6 w-px bg-border mx-2" />
+            <div className="h-6 w-px bg-border mx-1 xl:mx-2" />
 
             <Button
               variant="ghost"
@@ -83,12 +83,9 @@ export function Navbar() {
               )}
             </Button>
 
-            {/* Donation CTA */}
-            {/* route to donation page route */}
-
-            <Link href="/donation" passHref legacyBehavior>
-              <Button className="bg-brand-red cursor-pointer hover:bg-red-700 text-white rounded-full px-6 shadow-lg shadow-red-500/20 transition-transform hover:scale-105">
-                <Heart className="mr-2 h-4 w-4 fill-current" />
+            <Link href="/donation" passHref >
+              <Button className="bg-brand-red cursor-pointer hover:bg-red-700 text-white rounded-full px-4 xl:px-6 shadow-lg shadow-red-500/20 transition-transform hover:scale-105">
+                <Heart className="mr-1.5 h-4 w-4 fill-current xl:mr-2" />
                 DONATION
               </Button>
             </Link>
@@ -139,7 +136,7 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4">
-                <Link href="/donation" passHref legacyBehavior>
+                <Link href="/donation" passHref >
                   <Button
                     className="w-full bg-brand-red py-6 text-lg rounded-xl"
                     onClick={() => setIsOpen(false)} // ADD THIS LINE HERE
