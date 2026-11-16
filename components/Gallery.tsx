@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, type PointerEvent } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { ChevronLeft, ChevronRight, X, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
@@ -43,6 +43,7 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [[page, direction], setPage] = useState([0, 0]);
     const [scale, setScale] = useState(1);
+    const swipeStart = useRef<{ x: number; y: number } | null>(null);
 
     // Slice the images based on the limit prop
     const displayImages = limit ? GALLERY_IMAGES.slice(0, limit) : GALLERY_IMAGES;
@@ -57,52 +58,72 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
 
     const toggleZoom = () => setScale((prev) => (prev === 1 ? 2 : 1));
 
-    const getColSpan = (index: number) => {
-        const sequence = [2, 1, 1, 1, 1, 1, 2, 1];
-        return sequence[index % sequence.length];
+    const handleSwipeStart = (event: PointerEvent<HTMLDivElement>) => {
+        if (event.pointerType === "touch" && scale === 1) {
+            swipeStart.current = { x: event.clientX, y: event.clientY };
+            event.currentTarget.setPointerCapture(event.pointerId);
+        }
+    };
+
+    const handleSwipeEnd = (event: PointerEvent<HTMLDivElement>) => {
+        const start = swipeStart.current;
+        swipeStart.current = null;
+        if (!start || scale !== 1) return;
+
+        const deltaX = event.clientX - start.x;
+        const deltaY = event.clientY - start.y;
+        if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) {
+            return;
+        }
+
+        paginate(deltaX < 0 ? 1 : -1);
     };
 
     return (
-        <section className="py-24 bg-background overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4">
+        <section className="overflow-hidden bg-background py-24">
+            <div className="mx-auto max-w-5xl px-4">
                 <SectionHeader
                     overline="Visual Journey"
                     title="Faith in"
                     accent="Focus"
                     align="center"  
                 />
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-3 gap-1 sm:gap-2">
                     {displayImages.map((image, index) => {
-                        const span = getColSpan(index);
                         return (
                             <Dialog key={image.id} onOpenChange={(open) => !open && setScale(1)}>
                                 <DialogTrigger asChild>
-                                    <motion.div
+                                    <motion.button
+                                        type="button"
+                                        aria-label={`View ${image.alt}`}
                                         variants={gridItemVariants}
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: true, margin: "-100px" }}
-                                        whileHover={{ y: -5 }}
-                                        onClick={() => setSelectedIndex(index)}
-                                        className={`relative group overflow-hidden rounded-3xl cursor-pointer 
-                                            ${span === 2 ? 'col-span-2 row-span-2 aspect-square md:aspect-auto' : 'col-span-1 aspect-square'}
-                                        `}
+                                        onClick={() => {
+                                            setSelectedIndex(index);
+                                            setPage([0, 0]);
+                                            setScale(1);
+                                        }}
+                                        className="group relative aspect-square w-full overflow-hidden bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
                                     >
                                         <Image
                                             src={image.src}
                                             alt={image.alt}
                                             fill
-                                            sizes="(max-width: 768px) 50vw, 25vw"
-                                            loading="eager"
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            sizes="(max-width: 640px) 33vw, 320px"
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center backdrop-blur-sm">
-                                            <Maximize2 className="text-white w-8 h-8 opacity-60" />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                                            <Maximize2 aria-hidden="true" className="size-6 text-white" />
                                         </div>
-                                    </motion.div>
+                                    </motion.button>
                                 </DialogTrigger>
 
-                                <DialogContent className="max-w-none w-screen h-screen p-0 bg-black border-none shadow-none focus:outline-none overflow-hidden flex items-center justify-center">
+                                <DialogContent
+                                    showCloseButton={false}
+                                    className="!max-w-none w-screen h-dvh p-0 bg-black border-none shadow-none focus:outline-none overflow-hidden flex items-center justify-center"
+                                >
                                     {/* UI LAYER */}
                                     <div className="absolute inset-0 z-50 flex flex-col justify-between pointer-events-none">
                                         <div className="w-full flex items-center justify-between p-6 pointer-events-auto">
@@ -134,6 +155,9 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
                                             <h4 className="text-white text-xl md:text-3xl font-black capitalize tracking-tighter">
                                                 {activeImage?.alt}
                                             </h4>
+                                            <p className="mt-2 text-sm text-white/55 sm:hidden">
+                                                Swipe to browse
+                                            </p>
                                         </div>
                                     </div>
 
@@ -150,7 +174,12 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
                                                 style={{ scale }}
                                                 drag={scale > 1}
                                                 dragConstraints={{ left: -300, right: 300, top: -300, bottom: 300 }}
-                                                className="relative w-full h-full"
+                                                onPointerDown={handleSwipeStart}
+                                                onPointerUp={handleSwipeEnd}
+                                                onPointerCancel={() => {
+                                                    swipeStart.current = null;
+                                                }}
+                                                className="relative h-full w-full touch-pan-y"
                                             >
                                                 {activeImage && (
                                                     <Image
@@ -158,7 +187,7 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
                                                         alt={activeImage.alt}
                                                         fill
                                                         unoptimized
-                                                        className="object-contain select-none p-4"
+                                                        className="object-contain select-none p-2"
                                                     />
                                                 )}
                                             </motion.div>
