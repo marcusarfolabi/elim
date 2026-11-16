@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import * as LucideIcons from "lucide-react";
 import { FOOTER_DATA } from "@/setting";
@@ -20,6 +21,8 @@ import { TestimonyForm } from "./TestimonyForm";
 import { ChoirForm } from "./ChoirForm";
 
 export function ModernFooter() {
+    const [testimonyDialogOpen, setTestimonyDialogOpen] = useState(false);
+
     return (
         <footer className="relative bg-background pt-24 pb-12 overflow-hidden border-t border-border transition-colors duration-500">
             <div className="absolute top-0 right-0 w-125 h-125 bg-brand-blue/5 rounded-full blur-[120px] -z-10" />
@@ -69,12 +72,20 @@ export function ModernFooter() {
 
                         <div className="relative w-full h-75 rounded-3xl overflow-hidden border border-border group">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.2756881541923!2d3.2972644739941215!3d6.612628493381405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9100358f2d9d%3A0x4777fd9872983b97!2s34%20Alimosho%20Rd%2C%20Lagos%2C%20Ikeja%20102213%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2ske!4v1777104970069!5m2!1sen!2ske"
+                                src={FOOTER_DATA.mapEmbedUrl}
+                                title="Map to Elim Sanctuary"
                                 className="w-full h-full dark:invert group-hover:opacity-100 transition-opacity duration-700"
                                 loading="lazy"
                             />
                             <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.2)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]" />
                         </div>
+                        <Link
+                            href="/visit-us"
+                            className="mt-4 inline-flex items-center gap-2 font-semibold text-brand-red hover:text-brand-blue dark:hover:text-brand-gold"
+                        >
+                            View visit details
+                            <LucideIcons.ArrowUpRight className="h-4 w-4" />
+                        </Link>
                     </motion.div>
 
                     {/* RIGHT: FORMS & SOCIALS */}
@@ -89,7 +100,15 @@ export function ModernFooter() {
 
                         <div className="grid grid-cols-1 gap-4 mb-12">
                             {FOOTER_DATA.forms.map((form, i) => (
-                                <Dialog key={i}>
+                                <Dialog
+                                    key={i}
+                                    open={form.name === "TESTIMONY FORM" ? testimonyDialogOpen : undefined}
+                                    onOpenChange={
+                                        form.name === "TESTIMONY FORM"
+                                            ? setTestimonyDialogOpen
+                                            : undefined
+                                    }
+                                >
                                     <DialogTrigger asChild>
                                         <motion.div
                                             whileHover={{ x: 10 }}
@@ -114,7 +133,11 @@ export function ModernFooter() {
                                         {form.name === "SALVATION FORM" && <SalvationForm />}
                                         {form.name === "APPOINTMENT FORM" && <AppointmentForm />}
                                         {form.name === "MENS FELLOWSHIP FORM" && <MensFellowshipForm />}
-                                        {form.name === "TESTIMONY FORM" && <TestimonyForm />}
+                                        {form.name === "TESTIMONY FORM" && (
+                                            <TestimonyForm
+                                                onSubmitted={() => setTestimonyDialogOpen(false)}
+                                            />
+                                        )}
                                         {form.name === "CHOIR APPLICATION" && <ChoirForm />}  
  
                                     </DialogContent>

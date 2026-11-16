@@ -8,13 +8,13 @@ interface TestimonyProps {
     category: string;
     title?: string;
     testimony: string;
-    canShare: string;
+    canShare: "yes" | "no";
 }
 
 export const TestimonyEmail = ({
     name, email, phone, category, title, testimony, canShare
 }: TestimonyProps) => {
-    const isPrivate = canShare.toLowerCase().includes("private");
+    const isPrivate = canShare === "no";
 
     return (
         <Html>
@@ -22,7 +22,7 @@ export const TestimonyEmail = ({
                 <Container style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "8px", border: `2px solid ${isPrivate ? "#dc2626" : "#16a34a"}` }}>
                     <Section style={{ textAlign: "center", marginBottom: "20px" }}>
                         <Text style={{ color: isPrivate ? "#dc2626" : "#16a34a", fontWeight: "bold", fontSize: "14px", textTransform: "uppercase" }}>
-                            {isPrivate ? "🔴 Private to Pastor Only" : "🟢 Permission to Share with Church"}
+                            {isPrivate ? "Private - do not publish" : "Approved for website and church sharing"}
                         </Text>
                     </Section>
 

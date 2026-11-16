@@ -59,10 +59,13 @@ export function Hero() {
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                     <Button
                         size="lg"
+                        asChild
                         className="cursor-pointer bg-brand-red hover:bg-red-700 text-white rounded-full px-8 h-14 text-lg font-bold shadow-xl hover:scale-105 transition-transform"
                     >
-                        <MapPin className="mr-2 h-5 w-5" />
-                        LOCATE US
+                        <Link href="/visit-us">
+                            <MapPin className="mr-2 h-5 w-5" />
+                            LOCATE US
+                        </Link>
                     </Button>
 
                     <Button

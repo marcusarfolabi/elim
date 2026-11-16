@@ -34,3 +34,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Testimonies and Supabase availability
+
+Apply `supabase/migrations/20261116090000_public_testimonies.sql` to the Supabase project. It allows public reads only for testimonies whose authors opted in, and limits anonymous reads to fields used on the website. Public submissions revalidate the homepage and appear on `/testimonies`.
+
+Configure `RESEND_API_KEY` and `SYSTEM_EMAIL` in the deployment environment to send testimony notifications to the system administrator. Set a strong `CRON_SECRET` in the Vercel production environment so the daily `/api/cron/supabase-keepalive` job can query Supabase.
+
+The daily request is a best-effort way to avoid inactivity pauses on Supabase Free. Supabase states that upgrading to Pro is the way to guarantee a project will not be paused for inactivity.

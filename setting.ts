@@ -316,6 +316,8 @@ export const FOOTER_DATA = {
     "34-36 Alimosho Road, Off Lagos-Abeokuta Expressway, By Go-Ye Junction, Akowonjo Lagos",
   phone: "+2348033030090",
   email: "info@rccg-elimsanctuary.org",
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.2756881541923!2d3.2972644739941215!3d6.612628493381405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9100358f2d9d%3A0x4777fd9872983b97!2s34%20Alimosho%20Rd%2C%20Lagos%2C%20Ikeja%20102213%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2ske!4v1777104970069!5m2!1sen!2ske",
   socials: [
     {
       name: "Facebook",

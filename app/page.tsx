@@ -6,6 +6,7 @@ import { IdentitySection } from "@/components/IdentitySection";
 import TestimonySection from "@/components/TestimonySection";
 import { WelcomeSection } from "@/components/WelcomeSection";
 
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
