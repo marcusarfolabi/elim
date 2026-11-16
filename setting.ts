@@ -1,5 +1,8 @@
 import { User, Church, Heart, BookOpen, Image, AudioLines } from "lucide-react";
 
+export const YOUTUBE_CHANNEL_ID = "UCjAH3NnyN5IIs5Ij0w55TbQ";
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@rccgelimsanctuary";
+
 export const NAVLINKS = [
   { name: "Our Pastors", href: "/our-pastors", icon: User },
   { name: "Our Pillars", href: "/our-pillar", icon: Church },
@@ -327,7 +330,7 @@ export const FOOTER_DATA = {
     },
     {
       name: "YouTube",
-      href: "https://www.youtube.com/channel/UCs7I0BXvWu79rrH8jJZza0Q",
+      href: YOUTUBE_CHANNEL_URL,
       icon: "Youtube",
     },
   ],

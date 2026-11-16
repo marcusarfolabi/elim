@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { MapPin, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export function Hero() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -67,14 +68,17 @@ export function Hero() {
                     <Button
                         size="lg"
                         variant="outline"
+                        asChild
                         className={cn(
                             "border-2 rounded-full px-8 h-14 text-lg font-bold transition-all cursor-pointer",
                             "border-white text-black hover:bg-white hover:text-brand-blue", // Light/Video styles
                             "dark:border-brand-gold dark:text-brand-gold dark:hover:bg-brand-gold dark:hover:text-black" // Dark mode specific
                         )}
                     >
-                        <PlayCircle className="mr-2 h-5 w-5" />
-                        WATCH ONLINE
+                        <Link href="/watch">
+                            <PlayCircle className="mr-2 h-5 w-5" />
+                            WATCH ONLINE
+                        </Link>
                     </Button>
                 </div>
             </div>
