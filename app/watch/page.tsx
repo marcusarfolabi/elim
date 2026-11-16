@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowUpRight, PlayCircle, Radio } from "lucide-react";
-import { YOUTUBE_CHANNEL_ID, YOUTUBE_CHANNEL_URL } from "@/setting";
+import { YOUTUBE_CHANNEL_URL } from "@/setting";
+import { getChannelVideos, type ChannelVideo } from "@/lib/youtube";
 
 export const metadata: Metadata = {
   title: {
@@ -10,16 +12,73 @@ export const metadata: Metadata = {
     "Watch live services and catch up on recent messages from Elim Sanctuary on YouTube.",
 };
 
+export const dynamic = "force-dynamic";
+
 const channelUrl = YOUTUBE_CHANNEL_URL;
 const streamsUrl = `${channelUrl}/streams`;
-const liveUrl = `https://www.youtube-nocookie.com/embed/live_stream?channel=${YOUTUBE_CHANNEL_ID}&rel=0`;
-const uploadsPlaylistId = YOUTUBE_CHANNEL_ID.replace(/^UC/, "UU");
-const uploadsUrl = `https://www.youtube-nocookie.com/embed/videoseries?list=${uploadsPlaylistId}&rel=0`;
 
-const iframePermissions =
-  "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+function VideoGrid({ videos }: { videos: ChannelVideo[] }) {
+  return (
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {videos.map((video) => (
+        <a
+          key={video.id}
+          href={`https://www.youtube.com/watch?v=${video.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group overflow-hidden rounded-2xl border border-border bg-background transition-transform hover:-translate-y-1"
+        >
+          <div className="relative aspect-video overflow-hidden bg-black">
+            <Image
+              src={video.thumbnailUrl}
+              alt=""
+              fill
+              unoptimized
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {video.isLivestream && (
+              <span className="absolute left-3 top-3 rounded-full bg-brand-red px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                Stream replay
+              </span>
+            )}
+            <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-brand-red text-white">
+              <PlayCircle className="h-5 w-5" />
+            </span>
+          </div>
+          <div className="p-4">
+            <h3 className="line-clamp-2 font-semibold leading-6 text-foreground group-hover:text-brand-red">
+              {video.title}
+            </h3>
+            <time
+              dateTime={video.publishedAt}
+              className="mt-2 block text-xs text-muted-foreground"
+            >
+              {new Date(video.publishedAt).toLocaleDateString("en-NG", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </time>
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+}
 
-export default function WatchPage() {
+export default async function WatchPage() {
+  const { videos, error } = await getChannelVideos();
+  const liveVideo = videos.find((video) => video.isLive && video.isEmbeddable);
+  const featuredVideo =
+    liveVideo ??
+    videos.find((video) => video.isLivestream && video.isEmbeddable) ??
+    videos.find((video) => video.isEmbeddable) ??
+    null;
+  const recentVideos = videos
+    .filter((video) => video.id !== featuredVideo?.id)
+    .slice(0, 4);
+
   return (
     <main className="min-h-screen bg-background">
       <section className="relative overflow-hidden bg-[#080b12] px-6 pb-16 pt-36 text-white sm:px-10 sm:pb-20 lg:px-12">
@@ -43,101 +102,129 @@ export default function WatchPage() {
       </section>
 
       <section className="px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.55fr_0.75fr] lg:gap-12">
-          <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-xl shadow-black/5">
-            <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
-                  <Radio className="h-5 w-5" />
-                </span>
-                <div>
-                  <h2 className="font-bold text-foreground">Live from Elim</h2>
-                  <p className="text-sm text-muted-foreground">
-                    The player shows our broadcast when we’re live.
-                  </p>
+        {featuredVideo ? (
+          <div className="mx-auto max-w-7xl">
+            <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-xl shadow-black/5">
+              <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
+                    {liveVideo ? (
+                      <Radio className="h-5 w-5" />
+                    ) : (
+                      <PlayCircle className="h-5 w-5" />
+                    )}
+                  </span>
+                  <div>
+                    <h2 className="font-bold text-foreground">
+                      {liveVideo
+                        ? "Live from Elim"
+                        : featuredVideo.isLivestream
+                          ? "Latest stream from Elim"
+                          : "Latest from Elim"}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      {liveVideo
+                        ? "We’re broadcasting live now."
+                        : "Watch our latest message right here."}
+                    </p>
+                  </div>
                 </div>
+                <a
+                  href={streamsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:text-brand-red dark:text-brand-gold"
+                >
+                  Open YouTube
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
               </div>
-              <a
-                href={streamsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:text-brand-red dark:text-brand-gold"
-              >
-                Open YouTube
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-            <div className="aspect-video bg-black">
-              <iframe
-                title="Elim Sanctuary live YouTube stream"
-                src={liveUrl}
-                allow={iframePermissions}
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="h-full w-full border-0"
-              />
-            </div>
-            <p className="px-5 py-4 text-sm leading-6 text-muted-foreground sm:px-7">
-              Not live right now? Browse recent services and messages below.
-            </p>
-          </div>
-
-          <aside className="flex flex-col justify-between rounded-3xl bg-brand-accent p-7 dark:bg-white/[0.04] sm:p-9">
-            <div>
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue text-white dark:bg-brand-gold dark:text-black">
-                <PlayCircle className="h-6 w-6" />
-              </span>
-              <h2 className="mt-6 text-2xl font-bold text-brand-blue dark:text-white">
-                Stay connected to the message.
-              </h2>
-              <p className="mt-4 leading-7 text-muted-foreground">
-                Find the latest services, teachings, worship, and community
-                moments from our YouTube channel.
+              <div className="relative aspect-video bg-black">
+                <iframe
+                  title={
+                    liveVideo
+                      ? "Elim Sanctuary live YouTube stream"
+                      : `Elim Sanctuary video: ${featuredVideo.title}`
+                  }
+                  src={`https://www.youtube-nocookie.com/embed/${featuredVideo.id}?rel=0`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </div>
+              <p className="px-5 py-4 text-sm leading-6 text-muted-foreground sm:px-7">
+                {liveVideo
+                  ? "You’re watching the current live broadcast."
+                  : featuredVideo.isLivestream
+                    ? "You’re watching our most recent livestream replay."
+                    : "You’re watching the latest upload."}
               </p>
             </div>
-            <a
-              href={channelUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-red hover:text-brand-blue dark:hover:text-brand-gold"
-            >
-              Visit our YouTube channel
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </aside>
-        </div>
+
+          </div>
+        ) : (
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-9 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-red">
+                  Watch again
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-brand-blue dark:text-white sm:text-4xl">
+                  Recent messages &amp; services
+                </h2>
+              </div>
+              <p className="max-w-lg leading-7 text-muted-foreground">
+                No live broadcast right now. Catch up on recent uploads from
+                Elim Sanctuary.
+              </p>
+            </div>
+            {recentVideos.length > 0 ? (
+              <VideoGrid videos={recentVideos} />
+            ) : (
+              <div className="rounded-2xl border border-border bg-card p-6 text-muted-foreground">
+                <p>
+                  {error === "missing-key"
+                    ? "YouTube videos aren’t configured on this server yet."
+                    : error === "request-failed"
+                      ? "Recent videos are temporarily unavailable."
+                      : "More videos will appear here as they are published."}
+                </p>
+                <a
+                  href={streamsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 font-semibold text-brand-red hover:text-brand-blue dark:hover:text-brand-gold"
+                >
+                  Browse videos on YouTube
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
-      <section className="bg-brand-accent px-6 py-16 dark:bg-white/[0.03] sm:px-10 lg:px-12 lg:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-9 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-red">
-                Watch again
+      {featuredVideo && recentVideos.length > 0 && (
+        <section className="bg-brand-accent px-6 py-16 dark:bg-white/[0.03] sm:px-10 lg:px-12 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-9 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-red">
+                  Watch again
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-brand-blue dark:text-white sm:text-4xl">
+                  Recent uploads
+                </h2>
+              </div>
+              <p className="max-w-lg leading-7 text-muted-foreground">
+                New uploads from our channel appear here automatically.
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-brand-blue dark:text-white sm:text-4xl">
-                Recent videos
-              </h2>
             </div>
-            <p className="max-w-lg leading-7 text-muted-foreground">
-              New uploads from our channel appear here automatically.
-            </p>
+            <VideoGrid videos={recentVideos} />
           </div>
-          <div className="overflow-hidden rounded-3xl border border-border bg-black shadow-xl shadow-black/10">
-            <div className="aspect-video">
-              <iframe
-                title="Recent Elim Sanctuary YouTube videos"
-                src={uploadsUrl}
-                loading="lazy"
-                allow={iframePermissions}
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="h-full w-full border-0"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </main>
   );
 }
