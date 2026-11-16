@@ -41,4 +41,12 @@ Apply `supabase/migrations/20261116090000_public_testimonies.sql` to the Supabas
 
 Configure `RESEND_API_KEY` and `SYSTEM_EMAIL` in the deployment environment to send testimony notifications to the system administrator. Set a strong `CRON_SECRET` in the Vercel production environment so the daily `/api/cron/supabase-keepalive` job can query Supabase.
 
+## Elim Studio bookings
+
+Apply `supabase/migrations/20261115000000_create_studio_bookings.sql` to the Supabase project used by the deployment. It creates `public.studio_bookings` and allows anonymous booking submissions through row-level security. If booking requests fail with `PGRST205` after confirming the table exists, refresh the PostgREST schema cache in the Supabase SQL Editor:
+
+```sql
+NOTIFY pgrst, 'reload schema';
+```
+
 The daily request is a best-effort way to avoid inactivity pauses on Supabase Free. Supabase states that upgrading to Pro is the way to guarantee a project will not be paused for inactivity.
