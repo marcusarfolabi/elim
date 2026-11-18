@@ -175,6 +175,106 @@ export type GalleryImage = {
 
 export const GALLERY_IMAGES: GalleryImage[] = [
   {
+    id: "gallery-20261118-104725-709",
+    src: "/assets/gallery/IMG_20261118_104725_709.jpg",
+    alt: "Elim Sanctuary gallery photo 1",
+  },
+  {
+    id: "gallery-20261118-104749-845",
+    src: "/assets/gallery/IMG_20261118_104749_845.jpg",
+    alt: "Elim Sanctuary gallery photo 2",
+  },
+  {
+    id: "gallery-20261118-104930-915",
+    src: "/assets/gallery/IMG_20261118_104930_915.jpg",
+    alt: "Elim Sanctuary gallery photo 3",
+  },
+  {
+    id: "gallery-20261118-104950-432",
+    src: "/assets/gallery/IMG_20261118_104950_432.jpg",
+    alt: "Elim Sanctuary gallery photo 4",
+  },
+  {
+    id: "gallery-20261118-105010-547",
+    src: "/assets/gallery/IMG_20261118_105010_547.jpg",
+    alt: "Elim Sanctuary gallery photo 5",
+  },
+  {
+    id: "gallery-20261118-105052-348",
+    src: "/assets/gallery/IMG_20261118_105052_348.jpg",
+    alt: "Elim Sanctuary gallery photo 6",
+  },
+  {
+    id: "gallery-20261118-105104-787",
+    src: "/assets/gallery/IMG_20261118_105104_787.jpg",
+    alt: "Elim Sanctuary gallery photo 7",
+  },
+  {
+    id: "gallery-20261118-105118-146",
+    src: "/assets/gallery/IMG_20261118_105118_146.jpg",
+    alt: "Elim Sanctuary gallery photo 8",
+  },
+  {
+    id: "gallery-20261118-105125-248",
+    src: "/assets/gallery/IMG_20261118_105125_248.jpg",
+    alt: "Elim Sanctuary gallery photo 9",
+  },
+  {
+    id: "gallery-20261118-105151-340",
+    src: "/assets/gallery/IMG_20261118_105151_340.jpg",
+    alt: "Elim Sanctuary gallery photo 10",
+  },
+  {
+    id: "gallery-20261118-105210-154",
+    src: "/assets/gallery/IMG_20261118_105210_154.jpg",
+    alt: "Elim Sanctuary gallery photo 11",
+  },
+  {
+    id: "gallery-20261118-105228-218",
+    src: "/assets/gallery/IMG_20261118_105228_218.jpg",
+    alt: "Elim Sanctuary gallery photo 12",
+  },
+  {
+    id: "gallery-20261118-105250-408",
+    src: "/assets/gallery/IMG_20261118_105250_408.jpg",
+    alt: "Elim Sanctuary gallery photo 13",
+  },
+  {
+    id: "gallery-20261118-105256-696",
+    src: "/assets/gallery/IMG_20261118_105256_696.jpg",
+    alt: "Elim Sanctuary gallery photo 14",
+  },
+  {
+    id: "gallery-20261118-105304-738",
+    src: "/assets/gallery/IMG_20261118_105304_738.jpg",
+    alt: "Elim Sanctuary gallery photo 15",
+  },
+  {
+    id: "gallery-20261118-105314-657",
+    src: "/assets/gallery/IMG_20261118_105314_657.jpg",
+    alt: "Elim Sanctuary gallery photo 16",
+  },
+  {
+    id: "gallery-20261118-105324-233",
+    src: "/assets/gallery/IMG_20261118_105324_233.jpg",
+    alt: "Elim Sanctuary gallery photo 17",
+  },
+  {
+    id: "gallery-20261118-105345-452",
+    src: "/assets/gallery/IMG_20261118_105345_452.jpg",
+    alt: "Elim Sanctuary gallery photo 18",
+  },
+  {
+    id: "gallery-20261118-105406-307",
+    src: "/assets/gallery/IMG_20261118_105406_307.jpg",
+    alt: "Elim Sanctuary gallery photo 19",
+  },
+  {
+    id: "gallery-20261118-105423-309",
+    src: "/assets/gallery/IMG_20261118_105423_309.jpg",
+    alt: "Elim Sanctuary gallery photo 20",
+  },
+  {
     id: "annointing-1",
     src: "/assets/gallery/annointing_service_1.jpg",
     alt: "Annointing Service",
