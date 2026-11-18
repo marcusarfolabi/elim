@@ -181,12 +181,6 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     caption: "Moments of divine encounter and consecration.",
   },
   {
-    id: "annointing-2",
-    src: "/assets/gallery/annointing_service_2.jpg",
-    alt: "Annointing Service Highlights",
-    caption: "A special atmosphere of prayer and grace.",
-  },
-  {
     id: "choir-main",
     src: "/assets/gallery/choir.jpg",
     alt: "The Elim Choir",
@@ -209,7 +203,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     src: "/assets/gallery/media.jpg",
     alt: "Media Ministry",
     caption: "Spreading the gospel through digital excellence.",
-  }, 
+  },
   {
     id: "studio-pastor-couple",
     src: "/assets/studio/pastor_and_pastor_mrs.jpg",
@@ -482,7 +476,7 @@ export const mainPastors = [
   },
   {
     name: "Pastor Abayomi Akintan",
-    role: "Pastor-in-Charge, Elim Sanctuary",
+    role: "",
     credentials: "MSc. Facility Management",
     image: "/assets/pastors/pastor_abayomi_akintan.jpg",
     message: [
@@ -516,7 +510,7 @@ export const ministers = [
   },
   {
     name: "Pastor Tunde Balogun",
-    role: "Assistant Pastor",
+    role: "Pastor",
     description: "Committed to supporting the vision and ensuring the spiritual well-being of the flock.",
     image: "/assets/pastors/julius_oladiran.jpg"
   },
@@ -525,13 +519,7 @@ export const ministers = [
     role: "Zonal Mummy",
     description: "A mother in Israel, providing spiritual guidance and support to the women and families in the zone.",
     image: "/assets/pastors/mrs_akintan.jpg"
-  },
-  {
-    name: "Pastor Abayomi Akintan",
-    role: "Parish Pastor",
-    description: "Empowering the next generation to take their place in the kingdom and the marketplace.",
-    image: "/assets/pastors/femi_majekodunmi.jpg"
-  },
+  }, 
   {
     name: "Bro. Jegede",
     role: "Minister",
