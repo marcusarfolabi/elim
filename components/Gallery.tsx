@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, type PointerEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { ChevronLeft, ChevronRight, X, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
@@ -80,16 +81,49 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
     };
 
     return (
-        <section className="overflow-hidden bg-background py-24">
-            <div className="mx-auto max-w-5xl px-4">
+        <section className="overflow-hidden bg-black py-16 sm:py-24">
+            <div className="mx-auto max-w-screen-2xl px-4 sm:px-6">
                 <SectionHeader
                     overline="Visual Journey"
                     title="Faith in"
                     accent="Focus"
-                    align="center"  
+                    align="center"
+                    className="[&_h2]:text-white"
                 />
-                <div className="grid grid-cols-3 gap-1 sm:gap-2">
+                <div className="grid auto-rows-[clamp(7.5rem,40vw,15rem)] grid-cols-2 gap-3 sm:auto-rows-[clamp(9rem,27vw,18rem)] sm:grid-cols-3 sm:gap-4 lg:auto-rows-[clamp(11rem,22vw,21rem)] lg:grid-cols-4">
                     {displayImages.map((image, index) => {
+                        const isMoreTile =
+                            displayImages.length < GALLERY_IMAGES.length &&
+                            index === displayImages.length - 1;
+                        const isFeatured = index % 7 === 0;
+                        const imageSizes = isFeatured
+                            ? "(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
+                            : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
+
+                        if (isMoreTile) {
+                            return (
+                                <Link
+                                    key={image.id}
+                                    href="/our-gallery"
+                                    aria-label="More gallery photos"
+                                    className={`group relative block w-full overflow-hidden rounded-[1.25rem] bg-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold ${
+                                        isFeatured ? "col-span-2 row-span-2" : ""
+                                    }`}
+                                >
+                                    <Image
+                                        src={image.src}
+                                        alt={image.alt}
+                                        fill
+                                        sizes={imageSizes}
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                    <span className="absolute inset-0 flex items-center justify-center gap-2 bg-black/55 text-lg font-semibold text-white transition-colors group-hover:bg-black/70">
+                                        More <ChevronRight aria-hidden="true" className="size-5" />
+                                    </span>
+                                </Link>
+                            );
+                        }
+
                         return (
                             <Dialog key={image.id} onOpenChange={(open) => !open && setScale(1)}>
                                 <DialogTrigger asChild>
@@ -105,13 +139,15 @@ export function AsymmetricGallery({ limit }: GalleryProps) {
                                             setPage([0, 0]);
                                             setScale(1);
                                         }}
-                                        className="group relative aspect-square w-full overflow-hidden bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
+                                        className={`group relative w-full overflow-hidden rounded-[1.25rem] bg-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold ${
+                                            isFeatured ? "col-span-2 row-span-2" : ""
+                                        }`}
                                     >
                                         <Image
                                             src={image.src}
                                             alt={image.alt}
                                             fill
-                                            sizes="(max-width: 640px) 33vw, 320px"
+                                            sizes={imageSizes}
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
